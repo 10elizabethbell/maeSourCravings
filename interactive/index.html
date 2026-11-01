@@ -275,13 +275,13 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
         <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak" aria-describedby="e-where">
         <p class="err" id="e-where">Add your part of town so I know where to bring it.</p>
       </div>
-      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Write my message</button>
+      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Copy order, open Messenger</button>
       <div class="sent" id="sent" role="status" hidden>
         <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
         <pre id="sentText"></pre>
         <a class="btn btn-primary" id="sentLink" href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger</a>
       </div>
-      <p class="after" id="after">I'll write it out for you to send me on Messenger.</p>
+      <p class="after" id="after">I'll copy your order and open our chat. Just paste it in and send.</p>
     </form>
   </div>
 </section>
@@ -360,22 +360,22 @@ var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(f&&e.target.value.trim())f.classList.remove('bad');
     stale();save();
   });
-  function copy(text){
-    // must run inside the tap; Facebook's browser may refuse both of these
+  function copy(text,done){
+    // must start inside the tap; Facebook's browser may refuse both of these
     var ok=false,pre=$('sentText');
     try{
       var range=document.createRange();range.selectNodeContents(pre);
       var sel=getSelection();sel.removeAllRanges();sel.addRange(range);
       ok=document.execCommand('copy');sel.removeAllRanges();
     }catch(e){}
-    if(!ok&&navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){tell(true)},function(){});
-    }
-    return ok;
+    if(ok){done(true);return}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});
+    }else done(false);
   }
   function tell(copied){
     $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
-    $('sentHow').textContent=copied?'Open Messenger and paste it in our chat.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
+    $('sentHow').textContent=copied?'Paste it in our chat on Messenger.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();
@@ -392,11 +392,13 @@ var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
     if(!where){$('where').focus();return}
     var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nI\'m in: '+where;
     $('sentText').textContent=msg;
-    $('sentLink').href=CONFIG.MESSENGER+'?text='+encodeURIComponent(msg);
     $('sent').hidden=false;$('after').hidden=true;
-    tell(copy(msg));
-    $('sentLink').focus({preventScroll:true});
-    $('sent').scrollIntoView({block:'nearest',behavior:'smooth'});
+    // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
+    copy(msg,function(ok){
+      tell(ok);
+      if(ok)setTimeout(function(){location.href=CONFIG.MESSENGER},300);
+      else{$('sentLink').focus({preventScroll:true});$('sent').scrollIntoView({block:'nearest',behavior:'smooth'})}
+    });
   });
   restore();render();
 })();
