@@ -60,7 +60,8 @@ section{padding:56px 0 64px}
 .brand b{font-size:15px;font-weight:900;line-height:1.1;letter-spacing:.01em;text-transform:uppercase}
 .place{font-size:15px;line-height:1.2;white-space:nowrap}
 .hero-copy{position:relative;z-index:2;display:grid;gap:16px;justify-items:start;padding-top:18px}
-.hero h1{font-size:clamp(38px,11vw,78px);max-width:11ch;color:#fff}
+.hero h1{font-size:clamp(36px,10.2vw,78px);max-width:12ch;color:#fff}
+.nw{white-space:nowrap}
 .promise{font-size:clamp(17px,4.7vw,20px);line-height:1.45;max-width:32ch}
 .promise b{color:var(--on-dark)}
 .actions{display:grid;gap:10px;width:100%}
@@ -69,9 +70,11 @@ section{padding:56px 0 64px}
 /* the stirring zone: vertical drags still scroll, and the scene follows the finger */
 .stir-space{position:relative;z-index:1;flex:1 0 auto;min-height:clamp(190px,30svh,340px);touch-action:pan-y;background:linear-gradient(to bottom,transparent 22%,var(--sauce-top) 22%,var(--sauce-low))}
 .js .stir-space{background:none}
+html:not(.js) .rider{display:none}
 
 /* ---------- Wave seams ---------- */
-.rider{display:none}
+.rider{position:absolute;z-index:1;width:34vw;aspect-ratio:1;right:16px;top:0;border-radius:50%;overflow:hidden;box-shadow:0 14px 26px -10px rgba(0,0,0,.6),0 0 0 4px rgba(185,227,46,.9);will-change:transform;pointer-events:none}
+.rider img{width:100%;height:100%;object-fit:cover;object-position:52% 50%}
 .seam{display:block;width:100%;height:clamp(52px,9vw,96px);margin:0}
 .seam path{fill:none;vector-effect:non-scaling-stroke}
 
@@ -106,6 +109,7 @@ section{padding:56px 0 64px}
 .order h2{color:var(--ink)}
 .order .lede{color:var(--soft)}
 .order .wrap{display:grid;gap:28px}
+.order-photo{display:none}
 form{background:var(--card);border-radius:24px;padding:clamp(20px,5vw,32px);display:grid;gap:20px;max-width:600px;width:100%}
 .lines{list-style:none;margin:0;padding:0;display:grid}
 .lines li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0}
@@ -136,7 +140,6 @@ form .btn-primary{width:100%}
 .sent{display:grid;gap:10px;color:var(--ink)}
 .sent b{font-weight:700}
 .sent pre{margin:0;padding:12px 14px;background:var(--field);border-radius:10px;font:15px/1.5 var(--font);white-space:pre-wrap;user-select:all;-webkit-user-select:all}
-.sent a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);font-weight:700}
 
 /* ---------- Close and footer ---------- */
 .close{background:var(--green);padding-top:28px}
@@ -157,10 +160,10 @@ footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-d
 }
 @media (min-width:1024px){
   .hero-copy{padding-top:40px}
-  .rider{display:block;position:absolute;z-index:1;width:min(30vw,440px);aspect-ratio:1;right:max(40px,calc((100vw - 1160px)/2));top:0;border-radius:50%;overflow:hidden;box-shadow:0 26px 50px -18px rgba(0,0,0,.6),0 0 0 6px rgba(185,227,46,.9);will-change:transform;pointer-events:none}
-  .rider img{width:100%;height:100%;object-fit:cover;object-position:52% 50%}
+  .rider{width:min(30vw,440px);right:max(40px,calc((100vw - 1160px)/2));box-shadow:0 26px 50px -18px rgba(0,0,0,.6),0 0 0 6px rgba(185,227,46,.9)}
   .how .steps{grid-template-columns:repeat(3,1fr);gap:40px}
   .order .wrap{grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+  .order-photo{display:block;width:100%;height:auto;border-radius:24px;margin-top:24px}
   .close .wrap{display:flex;align-items:center;gap:40px}
   .close img{margin:0;width:180px;height:180px}
 }
@@ -203,8 +206,8 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
     </div>
   </header>
   <div class="wrap hero-copy" id="heroCopy">
-    <h1 id="h1">Craving sour in San Antonio? <span class="accent">I deliver.</span></h1>
-    <p class="promise">I'm <b>Aleda.</b> Tell me what you want and I'll bring it to you, with no extra charge for delivery.</p>
+    <h1 id="h1">Craving sour in <span class="nw">San Antonio?</span> <span class="accent">I deliver.</span></h1>
+    <p class="promise">I'm <b>Aleda.</b> Tell me how many olives preparados you want and I'll bring them to you, with no extra charge for delivery.</p>
     <div class="actions" id="actions">
       <a class="btn btn-primary" href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Message me to order</a>
       <a class="btn btn-ghost" href="#menu">See the menu</a>
@@ -250,9 +253,10 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
   <div class="wrap">
     <div>
       <h2 id="h-order">Write your order</h2>
-      <p class="lede">Add up your cups here and I'll get it all in one message.</p>
+      <p class="lede">Add up your cups and I'll get it all in one message.</p>
+      <img class="order-photo" src="../img/pickle-16.webp" alt="16oz cup of olives with pickles" width="465" height="310" loading="lazy">
     </div>
-    <form id="orderForm" class="rise" novalidate>
+    <form id="orderForm" novalidate>
       <ul class="lines" id="lines">
         <li data-id="a" data-name="8oz" data-price="8"><span class="line-name">8oz<small>$8</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 8oz" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 8oz"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
         <li data-id="b" data-name="16oz" data-price="16"><span class="line-name">16oz<small>$16</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 16oz" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 16oz"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
@@ -266,17 +270,18 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
         <input type="text" id="name" name="name" autocomplete="given-name" maxlength="60" placeholder="First name is fine" aria-describedby="e-name">
         <p class="err" id="e-name">Add your name so I know who's ordering.</p>
       </div>
-      <div class="field">
-        <label for="where">Your part of town <small>(optional)</small></label>
-        <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak">
+      <div class="field" id="f-where">
+        <label for="where">Your part of town</label>
+        <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak" aria-describedby="e-where">
+        <p class="err" id="e-where">Add your part of town so I know where to bring it.</p>
       </div>
-      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send my order to Aleda</button>
+      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Write my message</button>
       <div class="sent" id="sent" role="status" hidden>
-        <p><b id="sentLead">Your order is copied.</b> If Messenger opens with an empty message, paste it in. Here it is:</p>
+        <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
         <pre id="sentText"></pre>
-        <a id="sentLink" data-msg href="https://m.me/elita.gonzalez.9">Open Messenger again</a>
+        <a class="btn btn-primary" id="sentLink" href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger</a>
       </div>
-      <p class="after" id="after">Opens Messenger so you can send it to me.</p>
+      <p class="after" id="after">I'll write it out for you to send me on Messenger.</p>
     </form>
   </div>
 </section>
@@ -309,7 +314,7 @@ var CONFIG = {
   OLIVE_R_PHONE: [15, 25], OLIVE_R_DESKTOP: [16, 30],
   PUSH_RADIUS: 92,      // how far the finger reaches
   PUSH: 2600,           // how hard it shoves olives away
-  CARRY: 0.55,          // how much of the finger's speed the olives pick up
+  CARRY: 1.2,           // how much of the finger's speed the olives pick up
   SPRING: 38, DAMP: 6.5,// how olives wobble back home
   GRAVITY: 1250,        // px/s^2 for olives and drops in the air
   SWELL: 1.0,           // size of the surface's rolling swell
@@ -320,11 +325,17 @@ var CONFIG = {
 document.documentElement.classList.add('js');
 var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-/* ===== Order builder: adds up the cups and hands the order to Messenger ===== */
+/* ===== Order builder: adds up the cups, writes the message, hands it to Messenger ===== */
 (function(){
   var form=document.getElementById('orderForm');if(!form)return;
+  var KEY='maes-order';
   var rows=[].slice.call(form.querySelectorAll('#lines li')),counts={};
+  var $=function(id){return document.getElementById(id)};
   rows.forEach(function(r){counts[r.dataset.id]=0});
+  // Facebook's browser can reload a page after you leave it, so the order survives that
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value}))}catch(e){}}
+  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||''}}catch(e){}}
+  function stale(){$('sent').hidden=true;$('after').hidden=false}
   function render(){
     var sum=0;
     rows.forEach(function(r){
@@ -332,49 +343,63 @@ var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
       r.querySelector('output').textContent=n;
       r.querySelector('[data-dir="-1"]').disabled=n===0;
     });
-    document.getElementById('total').textContent='$'+sum;
-    if(sum)document.getElementById('e-lines').hidden=true;
+    $('total').textContent='$'+sum;
+    if(sum)$('e-lines').hidden=true;
   }
   form.addEventListener('click',function(e){
     var b=e.target.closest('button[data-dir]');if(!b)return;
     var id=b.closest('li').dataset.id;
-    counts[id]=Math.max(0,Math.min(99,counts[id]+Number(b.dataset.dir)));render();
+    counts[id]=Math.max(0,Math.min(99,counts[id]+Number(b.dataset.dir)));render();stale();save();
   });
   // tapping a cup in the menu puts one in the order, then the link scrolls down to it
   [].forEach.call(document.querySelectorAll('[data-add]'),function(a){
-    a.addEventListener('click',function(){counts[a.dataset.add]++;render()});
+    a.addEventListener('click',function(){counts[a.dataset.add]=Math.min(99,counts[a.dataset.add]+1);render();stale();save()});
   });
-  document.getElementById('name').addEventListener('input',function(e){
-    if(e.target.value.trim())document.getElementById('f-name').classList.remove('bad');
+  form.addEventListener('input',function(e){
+    var f=e.target.closest('.field');
+    if(f&&e.target.value.trim())f.classList.remove('bad');
+    stale();save();
   });
+  function copy(text){
+    // must run inside the tap; Facebook's browser may refuse both of these
+    var ok=false,pre=$('sentText');
+    try{
+      var range=document.createRange();range.selectNodeContents(pre);
+      var sel=getSelection();sel.removeAllRanges();sel.addRange(range);
+      ok=document.execCommand('copy');sel.removeAllRanges();
+    }catch(e){}
+    if(!ok&&navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){tell(true)},function(){});
+    }
+    return ok;
+  }
+  function tell(copied){
+    $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
+    $('sentHow').textContent=copied?'Open Messenger and paste it in our chat.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
+  }
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=document.getElementById('name').value.trim(),where=document.getElementById('where').value.trim();
+    var name=$('name').value.trim(),where=$('where').value.trim();
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
-    var noItems=!items.length,field=document.getElementById('f-name');
-    document.getElementById('e-lines').hidden=!noItems;
-    field.classList.toggle('bad',!name);
-    document.getElementById('name').setAttribute('aria-invalid',name?'false':'true');
-    if(noItems){document.getElementById('lines').querySelector('[data-dir="1"]').focus();return}
-    if(!name){document.getElementById('name').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+document.getElementById('total').textContent;
-    if(where)msg+='\nI\'m in: '+where;
-    var url=CONFIG.MESSENGER+'?text='+encodeURIComponent(msg);
-    document.getElementById('sentText').textContent=msg;
-    document.getElementById('sentLink').href=url;
-    document.getElementById('sent').hidden=false;
-    document.getElementById('after').hidden=true;
-    var lead=document.getElementById('sentLead');
-    lead.textContent='Your order is written.';
-    // clipboard can be blocked in Facebook's browser, so the order also stays on screen
-    function go(){location.href=url}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(msg).then(function(){lead.textContent='Your order is copied.';go()},go);
-    }else go();
+    var noItems=!items.length;
+    $('e-lines').hidden=!noItems;
+    $('f-name').classList.toggle('bad',!name);
+    $('f-where').classList.toggle('bad',!where);
+    $('name').setAttribute('aria-invalid',name?'false':'true');
+    $('where').setAttribute('aria-invalid',where?'false':'true');
+    if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
+    if(!name){$('name').focus();return}
+    if(!where){$('where').focus();return}
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nI\'m in: '+where;
+    $('sentText').textContent=msg;
+    $('sentLink').href=CONFIG.MESSENGER+'?text='+encodeURIComponent(msg);
+    $('sent').hidden=false;$('after').hidden=true;
+    tell(copy(msg));
+    $('sentLink').focus({preventScroll:true});
+    $('sent').scrollIntoView({block:'nearest',behavior:'smooth'});
   });
-  render();
+  restore();render();
 })();
-
 
 /* ===== Shared animation loop: everything that moves registers here ===== */
 var Loop = (function(){
@@ -507,6 +532,7 @@ var Loop = (function(){
   window.addEventListener('touchstart',function(e){var t=e.touches[0];P.fresh=true;setP(t.clientX,t.clientY)},{passive:true});
   window.addEventListener('touchmove',function(e){var t=e.touches[0];setP(t.clientX,t.clientY)},{passive:true});
   window.addEventListener('touchend',function(){P.on=false},{passive:true});
+  window.addEventListener('touchcancel',function(){P.on=false},{passive:true});
 
   function spray(x,y,n,force){
     for(var i=0;i<n&&drops.length<70;i++){
@@ -575,7 +601,7 @@ var Loop = (function(){
       if(home+o.oy-o.r<ceiling){o.oy=ceiling+o.r-home;o.vy=Math.max(0,o.vy)}
       // shoved past the surface: it breaks free and flies
       var top=surfaceAt(o.x,t);
-      if((o.y<top-o.r*.4&&o.vy<-40)||(o.y<top+o.r*1.2&&o.vy<-170)){
+      if((o.y<top-o.r*.4&&o.vy<-40)||(o.y<top+o.r*1.2&&o.vy<-110)){
         o.free=true;o.x=hxx+o.ox;o.y=home+o.oy;o.spin=rnd(-5,5);
         var maxUp=Math.sqrt(Math.max(0,2*G*(o.y-ceiling-o.r)));  // never flies through the words
         o.vy=-Math.min(maxUp,Math.max(360,-o.vy*1.15));
@@ -601,7 +627,7 @@ var Loop = (function(){
     }
     if(rider.offsetWidth){ // her cup rides the surface
       var rw=rider.offsetWidth,rx=W-rider.offsetLeft-rw<0?0:rider.offsetLeft+rw/2;
-      var ry=surfaceAt(rx,t)-rw*.86+Math.sin(t*1.2)*3,rt=Math.sin(t*.9)*1.4+(surfaceAt(rx+60,t)-surfaceAt(rx-60,t))*.08;
+      var ry=surfaceAt(rx,t)-rw*(phone?.42:.86)+Math.sin(t*1.2)*3,rt=Math.sin(t*.9)*1.4+(surfaceAt(rx+60,t)-surfaceAt(rx-60,t))*.08;
       rider.style.transform='translateY('+ry.toFixed(1)+'px) rotate('+rt.toFixed(2)+'deg)';
     }
     draw(t);
@@ -647,7 +673,6 @@ var Loop = (function(){
     frame(.016,0);window.addEventListener('resize',function(){layout();frame(.016,0)},{passive:true});return;
   }
   Loop.add(hero,function(dt,t){frame(dt,t)});
-  window.__stir=function(){return{olives:olives.length,free:olives.filter(function(o){return o.free}).length,surf:surf,ceiling:ceiling,W:W,H:H,ghost:P.ghost,maxOff:Math.max.apply(null,olives.map(function(o){return Math.hypot(o.ox,o.oy)})),minY:Math.min.apply(null,olives.map(function(o){return o.y-o.r}))}};
 })();
 
 /* ===== Wave seams: three lines; the fill follows the middle one so there's no straight colour edge ===== */

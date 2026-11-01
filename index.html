@@ -18,7 +18,8 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap"></noscript>
 <style>
 /* ---------- Tokens ---------- */
 :root{
@@ -79,6 +80,7 @@ section{padding:64px 0}
 /* ---------- Buttons ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;border-radius:var(--pill);font:400 18px/1 var(--display);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background-color .2s,color .2s,border-color .2s,transform .12s}
 .btn:active{transform:scale(.98)}
+.btn,.line-name,.field label,.cup-name,.steps b,.fb{letter-spacing:.01em;word-spacing:.06em}
 .btn svg{width:22px;height:22px;flex:none}
 .btn-primary{background:var(--lime);color:var(--ink);border-color:var(--lime)}
 .btn-ghost{background:transparent;color:var(--on-dark);border-color:rgba(245,248,238,.7)}
@@ -129,6 +131,7 @@ section{padding:64px 0}
 
 /* ---------- Order form ---------- */
 .order .wrap{display:grid;gap:28px}
+.order-photo{display:none}
 form{background:var(--card);border-radius:var(--r-card);padding:clamp(20px,5vw,32px);display:grid;gap:20px;max-width:600px;width:100%}
 .lines{list-style:none;margin:0;padding:0;display:grid}
 .lines li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0}
@@ -159,7 +162,6 @@ form .btn-primary:focus-visible{outline:2px solid var(--focus);outline-offset:2p
 .sent{display:grid;gap:10px;color:var(--ink)}
 .sent b{font-weight:600}
 .sent pre{margin:0;padding:12px 14px;background:var(--field);border-radius:var(--r-field);font:15px/1.5 var(--text);white-space:pre-wrap;user-select:all;-webkit-user-select:all}
-.sent a{display:inline-flex;align-items:center;min-height:44px;color:var(--ink);font-weight:600}
 
 /* ---------- Close ---------- */
 .close img{width:150px;height:150px;margin-bottom:22px}
@@ -196,9 +198,9 @@ footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-d
   .hero-copy{padding-top:72px;padding-bottom:80px}
   .hero-copy>*{max-width:46%}
   .hero .actions{max-width:none}
-  .hero-photo{position:absolute;right:0;top:0;bottom:0;width:54%;height:100%;max-height:none;aspect-ratio:auto;object-position:60% 50%;margin:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 30%);mask-image:linear-gradient(to right,transparent 0,#000 30%)}
+  .hero-photo{position:absolute;right:0;top:0;bottom:0;width:50%;height:100%;max-height:none;aspect-ratio:auto;object-position:60% 50%;margin:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%);mask-image:linear-gradient(to right,transparent 0,#000 12%)}
   .order .wrap{grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
-  .order .head{position:sticky;top:40px}
+  .order-photo{display:block;width:100%;height:auto;border-radius:var(--r-card);margin-top:12px}
   .how .steps{grid-template-columns:repeat(3,1fr);gap:40px}
   .steps b{font-size:22px}
   .close .wrap{display:flex;align-items:center;gap:40px}
@@ -293,7 +295,8 @@ FORM: calm band system; order builder in place of a quote form because the job i
     <div class="head rise">
       <span class="eyebrow">No extra charge for delivery</span>
       <h2 id="h-order">Write your order</h2>
-      <p class="lede">Add up your cups here and I'll get it all in one message.</p>
+      <p class="lede">Add up your cups and I'll get it all in one message.</p>
+      <img class="order-photo" src="img/pickle-16.webp" alt="16oz cup of olives with pickles" width="465" height="310" loading="lazy">
     </div>
     <form id="orderForm" class="rise" novalidate>
       <ul class="lines" id="lines">
@@ -309,17 +312,18 @@ FORM: calm band system; order builder in place of a quote form because the job i
         <input type="text" id="name" name="name" autocomplete="given-name" maxlength="60" placeholder="First name is fine" aria-describedby="e-name">
         <p class="err" id="e-name">Add your name so I know who's ordering.</p>
       </div>
-      <div class="field">
-        <label for="where">Your part of town <small>(optional)</small></label>
-        <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak">
+      <div class="field" id="f-where">
+        <label for="where">Your part of town</label>
+        <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak" aria-describedby="e-where">
+        <p class="err" id="e-where">Add your part of town so I know where to bring it.</p>
       </div>
-      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send my order to Aleda</button>
+      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Write my message</button>
       <div class="sent" id="sent" role="status" hidden>
-        <p><b id="sentLead">Your order is copied.</b> If Messenger opens with an empty message, paste it in. Here it is:</p>
+        <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
         <pre id="sentText"></pre>
-        <a id="sentLink" data-msg href="https://m.me/elita.gonzalez.9">Open Messenger again</a>
+        <a class="btn btn-primary" id="sentLink" href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger</a>
       </div>
-      <p class="after" id="after">Opens Messenger so you can send it to me.</p>
+      <p class="after" id="after">I'll write it out for you to send me on Messenger.</p>
     </form>
   </div>
 </section>
@@ -376,11 +380,17 @@ document.documentElement.classList.add('js');
   if(last)last.addEventListener('animationend',function(){h.innerHTML=plain;h.removeAttribute('aria-label')});
 })();
 
-/* ===== Order builder: adds up the cups and hands the order to Messenger ===== */
+/* ===== Order builder: adds up the cups, writes the message, hands it to Messenger ===== */
 (function(){
   var form=document.getElementById('orderForm');if(!form)return;
+  var KEY='maes-order';
   var rows=[].slice.call(form.querySelectorAll('#lines li')),counts={};
+  var $=function(id){return document.getElementById(id)};
   rows.forEach(function(r){counts[r.dataset.id]=0});
+  // Facebook's browser can reload a page after you leave it, so the order survives that
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value}))}catch(e){}}
+  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||''}}catch(e){}}
+  function stale(){$('sent').hidden=true;$('after').hidden=false}
   function render(){
     var sum=0;
     rows.forEach(function(r){
@@ -388,47 +398,62 @@ document.documentElement.classList.add('js');
       r.querySelector('output').textContent=n;
       r.querySelector('[data-dir="-1"]').disabled=n===0;
     });
-    document.getElementById('total').textContent='$'+sum;
-    if(sum)document.getElementById('e-lines').hidden=true;
+    $('total').textContent='$'+sum;
+    if(sum)$('e-lines').hidden=true;
   }
   form.addEventListener('click',function(e){
     var b=e.target.closest('button[data-dir]');if(!b)return;
     var id=b.closest('li').dataset.id;
-    counts[id]=Math.max(0,Math.min(99,counts[id]+Number(b.dataset.dir)));render();
+    counts[id]=Math.max(0,Math.min(99,counts[id]+Number(b.dataset.dir)));render();stale();save();
   });
   // tapping a cup in the menu puts one in the order, then the link scrolls down to it
   [].forEach.call(document.querySelectorAll('[data-add]'),function(a){
-    a.addEventListener('click',function(){counts[a.dataset.add]++;render()});
+    a.addEventListener('click',function(){counts[a.dataset.add]=Math.min(99,counts[a.dataset.add]+1);render();stale();save()});
   });
-  document.getElementById('name').addEventListener('input',function(e){
-    if(e.target.value.trim())document.getElementById('f-name').classList.remove('bad');
+  form.addEventListener('input',function(e){
+    var f=e.target.closest('.field');
+    if(f&&e.target.value.trim())f.classList.remove('bad');
+    stale();save();
   });
+  function copy(text){
+    // must run inside the tap; Facebook's browser may refuse both of these
+    var ok=false,pre=$('sentText');
+    try{
+      var range=document.createRange();range.selectNodeContents(pre);
+      var sel=getSelection();sel.removeAllRanges();sel.addRange(range);
+      ok=document.execCommand('copy');sel.removeAllRanges();
+    }catch(e){}
+    if(!ok&&navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){tell(true)},function(){});
+    }
+    return ok;
+  }
+  function tell(copied){
+    $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
+    $('sentHow').textContent=copied?'Open Messenger and paste it in our chat.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
+  }
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=document.getElementById('name').value.trim(),where=document.getElementById('where').value.trim();
+    var name=$('name').value.trim(),where=$('where').value.trim();
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
-    var noItems=!items.length,field=document.getElementById('f-name');
-    document.getElementById('e-lines').hidden=!noItems;
-    field.classList.toggle('bad',!name);
-    document.getElementById('name').setAttribute('aria-invalid',name?'false':'true');
-    if(noItems){document.getElementById('lines').querySelector('[data-dir="1"]').focus();return}
-    if(!name){document.getElementById('name').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+document.getElementById('total').textContent;
-    if(where)msg+='\nI\'m in: '+where;
-    var url=CONFIG.MESSENGER+'?text='+encodeURIComponent(msg);
-    document.getElementById('sentText').textContent=msg;
-    document.getElementById('sentLink').href=url;
-    document.getElementById('sent').hidden=false;
-    document.getElementById('after').hidden=true;
-    var lead=document.getElementById('sentLead');
-    lead.textContent='Your order is written.';
-    // clipboard can be blocked in Facebook's browser, so the order also stays on screen
-    function go(){location.href=url}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(msg).then(function(){lead.textContent='Your order is copied.';go()},go);
-    }else go();
+    var noItems=!items.length;
+    $('e-lines').hidden=!noItems;
+    $('f-name').classList.toggle('bad',!name);
+    $('f-where').classList.toggle('bad',!where);
+    $('name').setAttribute('aria-invalid',name?'false':'true');
+    $('where').setAttribute('aria-invalid',where?'false':'true');
+    if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
+    if(!name){$('name').focus();return}
+    if(!where){$('where').focus();return}
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nI\'m in: '+where;
+    $('sentText').textContent=msg;
+    $('sentLink').href=CONFIG.MESSENGER+'?text='+encodeURIComponent(msg);
+    $('sent').hidden=false;$('after').hidden=true;
+    tell(copy(msg));
+    $('sentLink').focus({preventScroll:true});
+    $('sent').scrollIntoView({block:'nearest',behavior:'smooth'});
   });
-  render();
+  restore();render();
 })();
 
 /* ===== Floating message circle: shows after the hero, hides while the form is on screen ===== */
