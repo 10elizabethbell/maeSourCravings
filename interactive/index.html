@@ -183,9 +183,13 @@ footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-d
 /* ---------- Pop-up before Messenger opens ---------- */
 .popup{width:min(420px,calc(100vw - 40px));border:0;border-radius:24px;padding:24px;background:#fff;color:var(--ink);box-shadow:0 24px 60px -16px rgba(5,28,14,.55)}
 .popup::backdrop{background:rgba(5,28,14,.6)}
-.popup p{font-size:18px;line-height:1.5;margin-bottom:20px}
+.popup p{font-size:20px;line-height:1.35;font-weight:600;margin:0 40px 20px 0}
+.popup-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
+.popup-x svg{width:20px;height:20px}
+.popup-x:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
 .popup .btn{width:100%}
 .popup .btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media (hover:hover){.popup-x:hover{background:var(--field)}}
 </style>
 </head>
 <body>
@@ -312,14 +316,14 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
 </footer>
 
 <dialog class="popup" id="popup" aria-labelledby="popupText">
-  <p id="popupText">The message is copied to your clipboard, and Messenger is going to open. You just need to paste the message into the chat.</p>
-  <button class="btn btn-primary" id="popupGo" type="button"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger now</button>
+  <button class="popup-x" id="popupClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
+  <p id="popupText">Order copied! Paste it in Messenger</p>
+  <button class="btn btn-primary" id="popupGo" type="button" autofocus><svg aria-hidden="true"><use href="#i-msg"/></svg>Go to messenger</button>
 </dialog>
 
 <script>
 /* ===== Config: every tunable lives here ===== */
 var CONFIG = {
-  POPUP_MS: 4000,                               // how long the pop-up shows before Messenger opens
   MESSENGER: 'https://m.me/elita.gonzalez.9',
   OLIVES_PHONE: 40, OLIVES_DESKTOP: 120,
   LIMES_PHONE: 2, LIMES_DESKTOP: 4,
@@ -385,15 +389,14 @@ var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
       navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});
     }else done(false);
   }
-  // says what's about to happen, then opens Messenger; the button is for anyone who doesn't want to wait
+  // stays up until they tap Go to messenger or the X
   function popup(){
-    var d=$('popup'),timer;
-    function go(){clearTimeout(timer);if(d.open)d.close();location.href=CONFIG.MESSENGER}
+    var d=$('popup');
+    function go(){if(d.open)d.close();location.href=CONFIG.MESSENGER}
     if(!d.showModal){go();return}
-    d.showModal();
     $('popupGo').onclick=go;
-    d.oncancel=function(){clearTimeout(timer)};
-    timer=setTimeout(go,CONFIG.POPUP_MS);
+    $('popupClose').onclick=function(){d.close()};
+    d.showModal();
   }
   function tell(copied){
     $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
