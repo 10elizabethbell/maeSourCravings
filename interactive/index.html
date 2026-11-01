@@ -180,6 +180,12 @@ footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-d
   .btn,.hint{transition:none}
   .hint{display:none}
 }
+/* ---------- Pop-up before Messenger opens ---------- */
+.popup{width:min(420px,calc(100vw - 40px));border:0;border-radius:24px;padding:24px;background:#fff;color:var(--ink);box-shadow:0 24px 60px -16px rgba(5,28,14,.55)}
+.popup::backdrop{background:rgba(5,28,14,.6)}
+.popup p{font-size:18px;line-height:1.5;margin-bottom:20px}
+.popup .btn{width:100%}
+.popup .btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 </style>
 </head>
 <body>
@@ -275,13 +281,13 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
         <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak" aria-describedby="e-where">
         <p class="err" id="e-where">Add your part of town so I know where to bring it.</p>
       </div>
-      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Copy order, open Messenger</button>
+      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send the message</button>
       <div class="sent" id="sent" role="status" hidden>
         <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
         <pre id="sentText"></pre>
         <a class="btn btn-primary" id="sentLink" href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger</a>
       </div>
-      <p class="after" id="after">I'll copy your order and open our chat. Just paste it in and send.</p>
+      <p class="after" id="after">Opens Messenger so you can send it to me.</p>
     </form>
   </div>
 </section>
@@ -305,9 +311,15 @@ FORM: signature fluid motion (ellie-taste section 1) plus a drag-to-play hero (f
   </div>
 </footer>
 
+<dialog class="popup" id="popup" aria-labelledby="popupText">
+  <p id="popupText">The message is copied to your clipboard, and Messenger is going to open. You just need to paste the message into the chat.</p>
+  <button class="btn btn-primary" id="popupGo" type="button"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger now</button>
+</dialog>
+
 <script>
 /* ===== Config: every tunable lives here ===== */
 var CONFIG = {
+  POPUP_MS: 4000,                               // how long the pop-up shows before Messenger opens
   MESSENGER: 'https://m.me/elita.gonzalez.9',
   OLIVES_PHONE: 40, OLIVES_DESKTOP: 120,
   LIMES_PHONE: 2, LIMES_DESKTOP: 4,
@@ -373,6 +385,16 @@ var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
       navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});
     }else done(false);
   }
+  // says what's about to happen, then opens Messenger; the button is for anyone who doesn't want to wait
+  function popup(){
+    var d=$('popup'),timer;
+    function go(){clearTimeout(timer);if(d.open)d.close();location.href=CONFIG.MESSENGER}
+    if(!d.showModal){go();return}
+    d.showModal();
+    $('popupGo').onclick=go;
+    d.oncancel=function(){clearTimeout(timer)};
+    timer=setTimeout(go,CONFIG.POPUP_MS);
+  }
   function tell(copied){
     $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
     $('sentHow').textContent=copied?'Paste it in our chat on Messenger.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
@@ -396,7 +418,7 @@ var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
     // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
     copy(msg,function(ok){
       tell(ok);
-      if(ok)setTimeout(function(){location.href=CONFIG.MESSENGER},300);
+      if(ok)popup();
       else{$('sentLink').focus({preventScroll:true});$('sent').scrollIntoView({block:'nearest',behavior:'smooth'})}
     });
   });

@@ -8,7 +8,7 @@ Ellie asked mid-build for two versions: the current calm style and the older int
 
 ## What's built
 - **Both:** header, hero ("Craving sour in San Antonio? I deliver."), four cups with published prices, Facebook link under them, how to get some, order builder, close, footer. Tapping a cup adds one to the order and jumps to the builder.
-- **Order builder:** steppers, running total, name and part of town. One tap copies the order and opens Messenger, where the customer pastes it. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
+- **Order builder:** steppers, running total, name and part of town. "Send the message" copies the order and shows a pop-up saying so. Messenger opens after 4 seconds (`CONFIG.POPUP_MS`) or when they tap "Open Messenger now", and the customer pastes the order there. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
 - **Calm (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
 - **Interactive (`interactive/index.html`):** a pool of red sauce, olives and lime along the hero's bottom. It stirs itself until touched. A finger or mouse pushes olives, ripples the surface, and a flick launches olives that plop back with a splash. Her cup rides the surface in a round frame. Animated seams between sections, round cups that bob, system-stack uppercase headings. Tunables are in `CONFIG`.
@@ -48,6 +48,7 @@ Ellie asked mid-build for two versions: the current calm style and the older int
 
 ## Not verified
 - **Real Facebook in-app browser on a real phone.** This matters most. Copy may be blocked there; the page then says to press and hold the message.
+- **Messenger opening by itself after the pop-up.** Phones can refuse to open an app without a fresh tap, and the timer isn't a tap. If it lands on a login page in Facebook's browser, make the pop-up's button the only way to open it.
 - **The Messenger link when logged in.** Ellie confirmed pre-filled text doesn't reach the chat, so the link no longer sends it.
 - **Real touch on the sauce.** Touch was tested with synthetic events in headless Chromium, including up, down and sideways drags. Frame rate on old phones is untested.
 - **Impeccable coverage:** the detector ran, and one finish reviewer covered the critique, audit, polish, harden, clarify, adapt, optimize, typeset and layout lenses in a single pass. Those modes weren't run one at a time. Bolder, quieter, distill, delight, overdrive, animate, colorize, extract and shape weren't run.
