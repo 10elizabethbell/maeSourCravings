@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-01T23:15:20+00:00",
+  "title": "Design System: Mae's Sour Cravings",
+  "extensions": {
+    "colorMeta": {
+      "lime": {
+        "role": "primary",
+        "displayName": "Logo Lime",
+        "canonical": "#b9e32e",
+        "tonalRamp": [
+          "#080d00",
+          "#202a01",
+          "#394901",
+          "#556b08",
+          "#738f0c",
+          "#92b50a",
+          "#b3dc21",
+          "#dcff89"
+        ]
+      },
+      "lime-2": {
+        "role": "primary",
+        "displayName": "Bright Lime",
+        "canonical": "#cdf04f",
+        "tonalRamp": [
+          "#090d00",
+          "#212901",
+          "#3b4902",
+          "#586a02",
+          "#768e00",
+          "#96b411",
+          "#b8da32",
+          "#dfff7d"
+        ]
+      },
+      "green": {
+        "role": "secondary",
+        "displayName": "Flyer Green",
+        "canonical": "#0f4a28",
+        "tonalRamp": [
+          "#001004",
+          "#002e14",
+          "#154e2c",
+          "#386f4a",
+          "#59916b",
+          "#7cb58d",
+          "#9fd9b0",
+          "#c7ffd6"
+        ]
+      },
+      "deep": {
+        "role": "secondary",
+        "displayName": "Deep Flyer Green",
+        "canonical": "#0a3019",
+        "tonalRamp": [
+          "#001004",
+          "#072d16",
+          "#274b33",
+          "#466b51",
+          "#678d71",
+          "#89b093",
+          "#acd5b7",
+          "#d1fbdc"
+        ]
+      },
+      "sauce-top": {
+        "role": "tertiary",
+        "displayName": "Sauce Top",
+        "canonical": "#b3271a",
+        "tonalRamp": [
+          "#1f0000",
+          "#4c0200",
+          "#7e0a03",
+          "#b02317",
+          "#d84d3c",
+          "#ff7461",
+          "#ffb3a6",
+          "#ffe9e5"
+        ]
+      },
+      "sauce-low": {
+        "role": "tertiary",
+        "displayName": "Sauce Low",
+        "canonical": "#5f0e0a",
+        "tonalRamp": [
+          "#1f0000",
+          "#4d0101",
+          "#73221c",
+          "#97443a",
+          "#bd665a",
+          "#e4887c",
+          "#feb3a8",
+          "#ffe9e5"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f5f7ee",
+        "tonalRamp": [
+          "#0b0c06",
+          "#24261f",
+          "#41433c",
+          "#61625b",
+          "#82837b",
+          "#a4a69e",
+          "#c8cac2",
+          "#eef0e7"
+        ]
+      },
+      "card": {
+        "role": "neutral",
+        "displayName": "Card White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252525",
+          "#424242",
+          "#616161",
+          "#828282",
+          "#a5a5a5",
+          "#c9c9c9",
+          "#eeeeee"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Pale Field",
+        "canonical": "#e7edd6",
+        "tonalRamp": [
+          "#0a0d01",
+          "#232716",
+          "#404532",
+          "#5f6450",
+          "#808570",
+          "#a3a892",
+          "#c7ccb6",
+          "#ecf2db"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#10341f",
+        "tonalRamp": [
+          "#001005",
+          "#082d18",
+          "#274b35",
+          "#476b53",
+          "#678d74",
+          "#89b096",
+          "#add5b9",
+          "#d2fade"
+        ]
+      },
+      "body": {
+        "role": "neutral",
+        "displayName": "Body Green",
+        "canonical": "#2b4032",
+        "tonalRamp": [
+          "#000f05",
+          "#162a1d",
+          "#33483a",
+          "#516858",
+          "#728979",
+          "#94ac9b",
+          "#b8d1bf",
+          "#dcf6e4"
+        ]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft Green",
+        "canonical": "#4c6152",
+        "tonalRamp": [
+          "#010f05",
+          "#172a1d",
+          "#334839",
+          "#526758",
+          "#738979",
+          "#95ac9b",
+          "#b9d0bf",
+          "#ddf6e4"
+        ]
+      },
+      "on-dark": {
+        "role": "neutral",
+        "displayName": "On Dark",
+        "canonical": "#f5f8ee",
+        "tonalRamp": [
+          "#0a0c06",
+          "#24261f",
+          "#41433b",
+          "#60625a",
+          "#81847b",
+          "#a4a69d",
+          "#c8cbc1",
+          "#edf0e6"
+        ]
+      },
+      "on-dark-soft": {
+        "role": "neutral",
+        "displayName": "On Dark Soft",
+        "canonical": "#cfdcc9",
+        "tonalRamp": [
+          "#060e03",
+          "#1f281a",
+          "#3b4636",
+          "#5a6555",
+          "#7b8775",
+          "#9daa97",
+          "#c1cebb",
+          "#e6f3e0"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgba(16,52,31,.13)",
+        "tonalRamp": [
+          "#001005",
+          "#082d18",
+          "#274b35",
+          "#476b53",
+          "#678d74",
+          "#89b096",
+          "#add5b9",
+          "#d2fade"
+        ]
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus Green",
+        "canonical": "#0f4a28",
+        "tonalRamp": [
+          "#001004",
+          "#002e14",
+          "#154e2c",
+          "#386f4a",
+          "#59916b",
+          "#7cb58d",
+          "#9fd9b0",
+          "#c7ffd6"
+        ]
+      },
+      "error": {
+        "role": "neutral",
+        "displayName": "Error Red",
+        "canonical": "#b3261e",
+        "tonalRamp": [
+          "#1f0000",
+          "#4d0101",
+          "#800304",
+          "#b0221b",
+          "#d84c3f",
+          "#ff7464",
+          "#feb4a8",
+          "#ffe9e5"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The hero heading only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headings."
+      },
+      "price": {
+        "displayName": "Price",
+        "purpose": "Cup prices and, at a fixed 34px, the order total."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step titles."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Form field labels."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "All buttons."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The line under a section heading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Running text."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Sublabels under order line names and the total."
+      }
+    },
+    "shadows": [
+      {
+        "name": "float",
+        "value": "0 10px 28px rgba(5,28,14,.32)",
+        "purpose": "Calm version: the message circle only."
+      },
+      {
+        "name": "cup-frame",
+        "value": "0 18px 34px -14px rgba(0,0,0,.65), 0 0 0 5px rgba(185,227,46,.9)",
+        "purpose": "Interactive version: each round cup in the menu."
+      },
+      {
+        "name": "rider-phone",
+        "value": "0 14px 26px -10px rgba(0,0,0,.6), 0 0 0 4px rgba(185,227,46,.9)",
+        "purpose": "Interactive version: the hero cup under 1024px."
+      },
+      {
+        "name": "rider-desktop",
+        "value": "0 26px 50px -18px rgba(0,0,0,.6), 0 0 0 6px rgba(185,227,46,.9)",
+        "purpose": "Interactive version: the hero cup from 1024px."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-color",
+        "value": ".2s",
+        "purpose": "Button and arrow disc color transitions."
+      },
+      {
+        "name": "state-border",
+        "value": ".15s",
+        "purpose": "Input and stepper border transitions."
+      },
+      {
+        "name": "press",
+        "value": "transform .12s, scale(.98)",
+        "purpose": "Button press."
+      },
+      {
+        "name": "fade-up",
+        "value": "opacity and transform .4s ease-out, translateY(12px)",
+        "purpose": "Calm version: elements starting below the first screen, once."
+      },
+      {
+        "name": "message-circle-slide",
+        "value": "transform .35s cubic-bezier(.2,.8,.2,1)",
+        "purpose": "Calm version: message circle entering and leaving."
+      },
+      {
+        "name": "heading-letters",
+        "value": "1s cubic-bezier(.34,1.56,.64,1), 20ms stagger, from translateX(50px)",
+        "purpose": "Calm version: the hero heading on load, once."
+      },
+      {
+        "name": "hint-fade",
+        "value": "opacity .5s",
+        "purpose": "Interactive version: the stir hint on first touch."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "760px"
+      },
+      {
+        "name": "desktop",
+        "value": "1024px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action: message or order. Lime fill with ink text.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 2.5C6.6 2.5 2.4 6.5 2.4 11.7c0 2.7 1.1 5 3 6.6.2.1.3.4.3.6l.1 1.7c0 .5.6.9 1.1.7l1.9-.8c.2-.1.3-.1.5-.1.8.2 1.7.3 2.6.3 5.4 0 9.6-4 9.6-9.2S17.4 2.5 12 2.5zm5.7 7.1-2.8 4.5c-.5.7-1.4.9-2.1.4l-2.2-1.7c-.2-.2-.5-.2-.7 0l-3 2.3c-.4.3-.9-.2-.7-.6l2.8-4.5c.5-.7 1.4-.9 2.1-.4l2.2 1.700c.2.2.5.2.7 0l3-2.300c.4-.3.9.2.7.6z\"/></svg>Message me to order</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;border-radius:999px;font:400 18px/1 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background-color .2s,color .2s,border-color .2s,transform .12s;background:var(--lime,#b9e32e);color:var(--ink,#10341f);border-color:var(--lime,#b9e32e)}.ds-btn-primary:hover{background:var(--lime-2,#cdf04f);border-color:var(--lime-2,#cdf04f)}.ds-btn-primary:active{transform:scale(.98)}.ds-btn-primary:focus-visible{outline:3px solid var(--focus,#0f4a28);outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary hero action on a green band.",
+      "html": "<div class=\"ds-ghost-ground\"><a class=\"ds-btn-ghost\" href=\"#\">See the menu</a></div>",
+      "css": ".ds-ghost-ground{background:var(--green,#0f4a28);padding:20px}.ds-btn-ghost{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;border-radius:999px;font:400 18px/1 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background-color .2s,color .2s,border-color .2s,transform .12s;background:transparent;color:var(--on-dark,#f5f8ee);border-color:rgba(245,248,238,.7)}.ds-btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}.ds-btn-ghost:active{transform:scale(.98)}.ds-btn-ghost:focus-visible{outline:3px solid var(--lime,#b9e32e);outline-offset:3px}"
+    },
+    {
+      "name": "Cup Card",
+      "kind": "card",
+      "refersTo": "cup-card",
+      "description": "Calm version menu item. The whole card links to the order builder and adds one cup.",
+      "html": "<a class=\"ds-cup\" href=\"#\"><img class=\"ds-cup-img\" src=\"img/cup-16.webp\" alt=\"16oz cup of olives in red sauce\"><span class=\"ds-cup-text\"><span class=\"ds-cup-name\">16oz</span><span class=\"ds-cup-price\">$16</span><span class=\"ds-arrow\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></span></a>",
+      "css": ".ds-cup{display:grid;grid-template-rows:auto 1fr;width:240px;background:var(--card,#fff);border-radius:24px;overflow:hidden;text-decoration:none;color:var(--ink,#10341f)}.ds-cup-img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--field,#e7edd6)}.ds-cup-text{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:end;padding:14px}.ds-cup-name{grid-column:1/-1;font:400 20px/1.15 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em}.ds-cup-price{font:400 34px/1 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif)}.ds-arrow{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(16,52,31,.08);color:var(--ink,#10341f);transition:background-color .2s,color .2s}.ds-cup:hover .ds-arrow{background:var(--lime,#b9e32e)}.ds-cup:focus-visible{outline:none}.ds-cup:focus-visible .ds-arrow{background:var(--lime,#b9e32e);outline:3px solid var(--focus,#0f4a28);outline-offset:3px}"
+    },
+    {
+      "name": "Facebook Link Card",
+      "kind": "card",
+      "refersTo": "link-card",
+      "description": "Single wide link under the cups, sharing the arrow disc.",
+      "html": "<a class=\"ds-fb\" href=\"#\"><span>Click to see more on my Facebook</span><span class=\"ds-fb-arrow\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></a>",
+      "css": ".ds-fb{display:flex;align-items:center;justify-content:space-between;gap:14px;max-width:520px;min-height:76px;padding:14px 16px 14px 22px;border-radius:20px;background:var(--card,#fff);color:var(--ink,#10341f);text-decoration:none;font:400 21px/1.2 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em}.ds-fb-arrow{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(16,52,31,.08);transition:background-color .2s}.ds-fb:hover .ds-fb-arrow{background:var(--lime,#b9e32e)}.ds-fb:focus-visible{outline:none}.ds-fb:focus-visible .ds-fb-arrow{background:var(--lime,#b9e32e);outline:3px solid var(--focus,#0f4a28);outline-offset:3px}"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Order form field with a Cal Sans label.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-label\" for=\"ds-name\">Your name</label><input class=\"ds-input\" id=\"ds-name\" type=\"text\" placeholder=\"First name is fine\"></div>",
+      "css": ".ds-field{display:grid;gap:8px;max-width:360px}.ds-label{font:400 17px/1.2 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em;color:var(--ink,#10341f)}.ds-input{width:100%;box-sizing:border-box;font:16px/1.4 var(--text,-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"Helvetica Neue\",Arial,sans-serif);color:var(--ink,#10341f);background:var(--field,#e7edd6);border:2px solid transparent;border-radius:10px;padding:13px 14px;min-height:52px;caret-color:var(--green,#0f4a28);transition:border-color .15s}.ds-input::placeholder{color:var(--soft,#4c6152)}.ds-input:hover{border-color:var(--focus,#0f4a28)}.ds-input:focus{outline:none;border-color:var(--focus,#0f4a28)}"
+    },
+    {
+      "name": "Order Stepper",
+      "kind": "custom",
+      "refersTo": "stepper-button",
+      "description": "Quantity control on each order line. Minus is disabled at zero.",
+      "html": "<span class=\"ds-step\"><button class=\"ds-step-btn\" type=\"button\" aria-label=\"One less\" disabled><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M4 12h16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg></button><output class=\"ds-step-count\">0</output><button class=\"ds-step-btn\" type=\"button\" aria-label=\"One more\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path d=\"M12 4v16M4 12h16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3\" stroke-linecap=\"round\"/></svg></button></span>",
+      "css": ".ds-step{display:inline-flex;align-items:center;gap:4px}.ds-step-btn{width:46px;height:46px;border-radius:50%;border:2px solid transparent;background:var(--field,#e7edd6);color:var(--ink,#10341f);cursor:pointer;display:grid;place-items:center;padding:0;transition:border-color .15s}.ds-step-btn:disabled{opacity:.45;cursor:default}.ds-step-btn:not(:disabled):hover{border-color:var(--focus,#0f4a28)}.ds-step-btn:focus-visible{outline:3px solid var(--focus,#0f4a28);outline-offset:3px}.ds-step-count{width:30px;text-align:center;font:400 20px/1 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);color:var(--ink,#10341f)}"
+    },
+    {
+      "name": "Numbered Step",
+      "kind": "custom",
+      "refersTo": "step-number",
+      "description": "How-it-works item on a deep green band.",
+      "html": "<div class=\"ds-steps\"><div class=\"ds-num\">1</div><div><b class=\"ds-step-title\">Message me your order.</b><span class=\"ds-step-text\">Which cups, and how many.</span></div></div>",
+      "css": ".ds-steps{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;background:var(--deep,#0a3019);padding:20px;color:var(--on-dark-soft,#cfdcc9);font:16px/1.7 var(--text,-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"Helvetica Neue\",Arial,sans-serif)}.ds-num{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--lime,#b9e32e);color:var(--ink,#10341f);font:400 20px/1 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif)}.ds-step-title{display:block;font:400 21px/1.2 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em;color:var(--on-dark,#f5f8ee);margin-top:4px}.ds-step-text{display:block;margin-top:4px}"
+    },
+    {
+      "name": "Message Circle",
+      "kind": "custom",
+      "refersTo": "message-circle",
+      "description": "Calm version only. Fixed in the page; shown after the hero and hidden while the order form is on screen. Shown here in place.",
+      "html": "<a class=\"ds-float\" href=\"#\" aria-label=\"Message Aleda on Messenger\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 2.5C6.6 2.5 2.4 6.5 2.4 11.7c0 2.7 1.1 5 3 6.6.2.1.3.4.3.6l.1 1.7c0 .5.6.9 1.1.7l1.9-.8c.2-.1.3-.1.5-.1.8.2 1.7.3 2.6.3 5.4 0 9.6-4 9.6-9.2S17.4 2.5 12 2.5zm5.7 7.1-2.8 4.5c-.5.7-1.4.9-2.1.4l-2.2-1.7c-.2-.2-.5-.2-.7 0l-3 2.3c-.4.3-.9-.2-.7-.6l2.8-4.5c.5-.7 1.4-.9 2.1-.4l2.2 1.700c.2.2.5.2.7 0l3-2.300c.4-.3.9.2.7.6z\"/></svg></a>",
+      "css": ".ds-float{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:var(--lime,#b9e32e);color:var(--ink,#10341f);box-shadow:0 10px 28px rgba(5,28,14,.32)}.ds-float svg{width:28px;height:28px}"
+    },
+    {
+      "name": "Round Cup",
+      "kind": "custom",
+      "refersTo": "round-cup-frame",
+      "description": "Interactive version menu item: a round frame with a lime ring on the deep band.",
+      "html": "<div class=\"ds-round-ground\"><a class=\"ds-round-cup\" href=\"#\"><span class=\"ds-round\"><img class=\"ds-round-img\" src=\"img/cup-16.webp\" alt=\"16oz cup of olives in red sauce\"></span><span class=\"ds-round-name\">16oz</span><span class=\"ds-round-price\">$16<span class=\"ds-round-arrow\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></span></a></div>",
+      "css": ".ds-round-ground{background:var(--deep,#0a3019);padding:24px;width:240px}.ds-round-cup{display:grid;justify-items:center;gap:12px;text-align:center;text-decoration:none;color:var(--on-dark,#f5f8ee);font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"Helvetica Neue\",Arial,sans-serif}.ds-round{display:block;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 18px 34px -14px rgba(0,0,0,.65),0 0 0 5px rgba(185,227,46,.9)}.ds-round-img{display:block;width:100%;height:100%;object-fit:cover}.ds-round-name{font-weight:800;font-size:18px;line-height:1.2;text-transform:uppercase}.ds-round-price{display:flex;align-items:center;gap:10px;font-weight:900;font-size:36px;line-height:1}.ds-round-arrow{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);transition:background-color .2s,color .2s}.ds-round-cup:hover .ds-round-arrow{background:var(--lime,#b9e32e);color:var(--ink,#10341f)}.ds-round-cup:focus-visible{outline:none}.ds-round-cup:focus-visible .ds-round-arrow{background:var(--lime,#b9e32e);color:var(--ink,#10341f);outline:3px solid var(--lime,#b9e32e);outline-offset:3px}"
+    },
+    {
+      "name": "Wave Seam",
+      "kind": "custom",
+      "description": "Interactive version divider between bands. The curves in this snippet are a static stand-in; the page redraws its lines each frame from three sine terms.",
+      "html": "<svg class=\"ds-seam\" viewBox=\"0 0 1000 100\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path class=\"ds-seam-fill\" d=\"M0 50 C250 20 450 80 700 45 S900 30 1000 55 L1000 100 L0 100 Z\"/><path class=\"ds-seam-outer\" d=\"M0 39 C250 9 450 69 700 34 S900 19 1000 44\"/><path class=\"ds-seam-mid\" d=\"M0 50 C250 20 450 80 700 45 S900 30 1000 55\"/><path class=\"ds-seam-outer\" d=\"M0 61 C250 31 450 91 700 56 S900 41 1000 66\"/></svg>",
+      "css": ".ds-seam{display:block;width:100%;height:96px;background:var(--deep,#0a3019)}.ds-seam-fill{fill:var(--paper,#f5f7ee)}.ds-seam-mid{fill:none;stroke:var(--lime,#b9e32e);stroke-width:3;stroke-linecap:round;vector-effect:non-scaling-stroke}.ds-seam-outer{fill:none;stroke:#7fa821;stroke-width:1.5;stroke-linecap:round;opacity:.6;vector-effect:non-scaling-stroke}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Flyer That Takes Orders",
+    "overview": "The system is her Facebook flyer's colors and images turned into a phone-first page that ends in a written order. Off-white paper alternates with two deep flyer greens in full-width bands. The logo's lime is the only accent, and it marks what to tap. Six images in `img/`, all crops of that flyer, supply all of the food color: the logo, a hero shot, and four cup images.\n\nDensity is low and the page is linear: header, hero, four cups, how it works, order builder, close, footer. Surfaces are flat, corners are generous, and actions are pills or circles. From 760px the layout widens in two steps without changing that sequence.\n\nThe calm version moves little. The hero heading animates in once, content below the first screen fades up 12px once, and the message circle slides in after the hero.",
+    "keyCharacteristics": [
+      "Full-width paper and green bands, with white cards only on paper.",
+      "One accent, lime, as a fill carrying deep ink, or as text on dark bands.",
+      "Cal Sans at a single weight for every named thing, and a system stack for running text.",
+      "Pills for actions, circles for small controls, 24px corners for containers.",
+      "Flat at rest, with one shadow on the page."
+    ],
+    "rules": [
+      {
+        "name": "The One Accent Rule",
+        "body": "Lime is the only accent in the interface. Greens and paper are grounds, and red in the interface is reserved for errors. The interactive version's sauce is scene, not interface.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lime Carries Ink Rule",
+        "body": "Every lime fill has Ink (#10341f) on it, in buttons, discs, the message circle and text selection.",
+        "section": "colors"
+      },
+      {
+        "name": "The Lime On Dark Rule",
+        "body": "Lime appears as text only on green bands: the accent phrase in a heading, and the footer link on hover. The calm page's direction note says lime is always a fill. The build also sets it as text on dark, and the build is what this records.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Weight Display Rule",
+        "body": "Cal Sans is always set at 400. Hierarchy comes from size and ground, never from a heavier cut.",
+        "section": "typography"
+      },
+      {
+        "name": "The Name Or Sentence Rule",
+        "body": "Headings, names, prices, counts, labels and buttons are Cal Sans. Sentences, sublabels and typed input are the system stack.",
+        "section": "typography"
+      },
+      {
+        "name": "The Open Word Rule",
+        "body": "Cal Sans at small sizes carries .01em letter spacing and .06em word spacing, on buttons, cup names, order line names, field labels, step titles and the Facebook card. Headings use -.005em and no word spacing.",
+        "section": "typography"
+      },
+      {
+        "name": "The 44 Floor Rule",
+        "body": "Nothing tappable is under 44px: brand link and footer link 44px, arrow disc 44px, stepper 46px, input 52px, button 56px, message circle 60px.",
+        "section": "layout"
+      },
+      {
+        "name": "The One Shadow Rule",
+        "body": "In the calm version, cards, the form and buttons carry no shadow. The single shadow belongs to the one fixed element.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do put Ink (#10341f) on every lime fill.",
+      "Do switch the focus ring by ground: 3px at 3px offset, in Focus Green on light and Logo Lime on green bands.",
+      "Do put hover styles inside a hover-capable media query, so taps don't leave them stuck on.",
+      "Do give every motion a reduced-motion state: smooth scroll, transitions and fade-up off, the heading static.",
+      "Do keep tap targets at 44px or larger, and form text at 16px.",
+      "Do use drawn SVG icons from the shared set: arrow, message, plus, minus, each in currentColor."
+    ],
+    "donts": [
+      "Don't add a second accent hue to the interface.",
+      "Don't set lime as text on paper or white.",
+      "Don't make the message action a bottom bar. It is one circle.",
+      "Don't animate content that is already on the first screen with the fade-up. It applies only below the fold.",
+      "Don't lay a tint or overlay over the hero image.",
+      "Don't set Cal Sans heavier than 400."
+    ]
+  }
+}
