@@ -9,7 +9,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 
 ## What's built
 - **Sections:** header, hero ("Craving sour in San Antonio? I deliver."), four cups with published prices, Facebook link under them, how to get some, order builder, close, footer. Tapping a cup adds one to the order and jumps to the builder.
-- **Order builder:** steppers, running total, name and part of town. "Send the message" copies the order and shows a pop-up ("Order copied! Paste it in Messenger"). It stays up until they tap "Go to messenger" or the X. Tapping the X leaves them on the page with the order and an Open Messenger button. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
+- **Order builder:** steppers, running total, name and address. "Send the message" copies the order and shows a pop-up ("Order copied! Paste it in Messenger"). It stays up until they tap "Go to messenger" or the X. Tapping the X leaves them on the page with the order and an Open Messenger button. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
 - **Look (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
 - **Contact:** Messenger only (`m.me/elita.gonzalez.9`), because that's how she takes orders and no phone is known.
@@ -19,7 +19,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 - **Lime as the accent, greens as the bands:** taken from her logo and flyer, since the brief listed colours as unknown.
 - **Logo:** the brief says none was found, but the flyer has one at the top. I cut it out as a circle for the header, close and icons.
 - **"Surrounding areas":** taken from the Facebook group's name, not from her.
-- **"Part of town" is required:** step 2 asks for it, and it saves a back-and-forth.
+- **Address is required:** step 2 asks where they are, and it saves a back-and-forth. (Changed from "part of town" to full address on 2026-11-05 at Ellie's request.)
 - **"Delivery included" on the total:** based on her "NO extra charge for delivery" comment. I don't know if a delivery radius or minimum applies.
 
 ## Placeholders and gaps

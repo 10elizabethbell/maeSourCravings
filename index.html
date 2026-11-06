@@ -323,9 +323,9 @@ FORM: calm band system; order builder in place of a quote form because the job i
         <p class="err" id="e-name">Add your name so I know who's ordering.</p>
       </div>
       <div class="field" id="f-where">
-        <label for="where">Your part of town</label>
-        <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak" aria-describedby="e-where">
-        <p class="err" id="e-where">Add your part of town so I know where to bring it.</p>
+        <label for="where">Your address</label>
+        <input type="text" id="where" name="where" autocomplete="street-address" maxlength="120" placeholder="Street, city" aria-describedby="e-where">
+        <p class="err" id="e-where">Add your address so I know where to bring it.</p>
       </div>
       <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send the message</button>
       <div class="sent" id="sent" role="status" hidden>
@@ -470,7 +470,7 @@ document.documentElement.classList.add('js');
     if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
     if(!name){$('name').focus();return}
     if(!where){$('where').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nI\'m in: '+where;
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nMy address: '+where;
     $('sentText').textContent=msg;
     $('sent').hidden=false;$('after').hidden=true;
     // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
