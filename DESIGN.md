@@ -6,8 +6,6 @@ colors:
   lime-2: "#cdf04f"
   green: "#0f4a28"
   deep: "#0a3019"
-  sauce-top: "#b3271a"
-  sauce-low: "#5f0e0a"
   paper: "#f5f7ee"
   card: "#ffffff"
   field: "#e7edd6"
@@ -158,8 +156,6 @@ components:
 
 # Design System: Mae's Sour Cravings
 
-Two shipped pages share this system. `calm/index.html` is the calm band version; every section below describes it unless it says otherwise. `index.html` is the interactive version, which the owner chose on 2026-11-05 and which is the live default. It keeps the same palette, images, copy structure and order builder, and differs as listed in **Interactive Version** at the end. The frontmatter tokens hold for the calm version, and the interactive version uses the color, spacing and radius values that the differences section does not change.
-
 ## Overview
 
 **Creative North Star: "The Flyer That Takes Orders"**
@@ -168,7 +164,7 @@ The system is her Facebook flyer's colors and images turned into a phone-first p
 
 Density is low and the page is linear: header, hero, four cups, how it works, order builder, close, footer. Surfaces are flat, corners are generous, and actions are pills or circles. From 760px the layout widens in two steps without changing that sequence.
 
-The calm version moves little. The hero heading animates in once, content below the first screen fades up 12px once, and the message circle slides in after the hero.
+The page moves little. The hero heading animates in once, content below the first screen fades up 12px once, and the message circle slides in after the hero.
 
 **Key Characteristics:**
 - Full-width paper and green bands, with white cards only on paper.
@@ -187,14 +183,13 @@ The palette is two flyer greens and a paper ground, with one saturated lime acce
 
 ### Secondary
 - **Flyer Green** (#0f4a28): Hero and close bands. Also the input caret and the Facebook icon on its white card.
-- **Deep Flyer Green** (#0a3019): How-it-works band and footer. Sits under the faint line texture in the calm version.
+- **Deep Flyer Green** (#0a3019): How-it-works band and footer. Sits under the faint line texture.
 
 ### Tertiary
-- **Sauce Top** (#b3271a) and **Sauce Low** (#5f0e0a): Interactive version only. See Interactive Version.
 
 ### Neutral
-- **Paper** (#f5f7ee): Page ground, header, menu and order bands, and the theme color of the calm version.
-- **Card White** (#ffffff): Cup cards, the Facebook card, and the order form. Also the hero heading color in both versions.
+- **Paper** (#f5f7ee): Page ground, header, menu and order bands, and the page's theme color.
+- **Card White** (#ffffff): Cup cards, the Facebook card, and the order form. Also the hero heading color.
 - **Pale Field** (#e7edd6): Inputs, stepper buttons, and the written-order block, all on white.
 - **Ink** (#10341f): Headings on light, all text on lime, card text, and the 2px rule above the total.
 - **Body Green** (#2b4032): Running text on light.
@@ -205,14 +200,14 @@ The palette is two flyer greens and a paper ground, with one saturated lime acce
 - **Focus Green** (#0f4a28): Input hover and focus border, and the focus ring on light grounds. Same value as Flyer Green, held as its own token.
 - **Error Red** (#b3261e): Validation text and the invalid input border. Used only for those.
 
-The calm stylesheet also declares a darker lime (#4d6a00) as the accent-phrase color on light grounds. No shipped heading uses an accent phrase on a light ground, so it is not a token.
+The stylesheet also declares a darker lime (#4d6a00) as the accent-phrase color on light grounds. No shipped heading uses an accent phrase on a light ground, so it is not a token.
 
 ### Named Rules
-**The One Accent Rule.** Lime is the only accent in the interface. Greens and paper are grounds, and red in the interface is reserved for errors. The interactive version's sauce is scene, not interface.
+**The One Accent Rule.** Lime is the only accent in the interface. Greens and paper are grounds, and red in the interface is reserved for errors.
 
 **The Lime Carries Ink Rule.** Every lime fill has Ink (#10341f) on it, in buttons, discs, the message circle and text selection.
 
-**The Lime On Dark Rule.** Lime appears as text only on green bands: the accent phrase in a heading, and the footer link on hover. The calm page's direction note says lime is always a fill. The build also sets it as text on dark, and the build is what this records.
+**The Lime On Dark Rule.** Lime appears as text only on green bands: the accent phrase in a heading, and the footer link on hover. The page's direction note says lime is always a fill. The build also sets it as text on dark, and the build is what this records.
 
 ## Typography
 
@@ -257,13 +252,13 @@ Safe-area insets are respected at the top of the header, around the message circ
 
 ## Elevation & Depth
 
-The calm version is flat. Depth comes from the change of ground between bands and from white cards on paper. Green bands other than the close carry a faint diagonal line texture (`repeating-linear-gradient(135deg, transparent 0 22px, rgba(255,255,255,.035) 22px 23px)`) on the hero, the how-it-works band and the footer.
+The page is flat. Depth comes from the change of ground between bands and from white cards on paper. Green bands other than the close carry a faint diagonal line texture (`repeating-linear-gradient(135deg, transparent 0 22px, rgba(255,255,255,.035) 22px 23px)`) on the hero, the how-it-works band and the footer.
 
 ### Shadow Vocabulary
 - **Float** (`box-shadow: 0 10px 28px rgba(5,28,14,.32)`): The message circle, the only element that floats above the page.
 
 ### Named Rules
-**The One Shadow Rule.** In the calm version, cards, the form and buttons carry no shadow. The single shadow belongs to the one fixed element.
+**The One Shadow Rule.** Cards, the form and buttons carry no shadow. The single shadow belongs to the one fixed element.
 
 ## Shapes
 
@@ -331,52 +326,3 @@ Elements that start below the first screen fade in and rise 12px over .4s ease-o
 - **Don't** animate content that is already on the first screen with the fade-up. It applies only below the fold.
 - **Don't** lay a tint or overlay over the hero image.
 - **Don't** set Cal Sans heavier than 400.
-
-## Interactive Version
-
-`index.html` (the live page) shares the color values, the six images, the page sequence, the button geometry, the order builder and the icon set. Everything below replaces the matching description above for this page only. Its direction note: "You came for sour. The first thing you get to do is stir it."
-
-### Removed
-No Cal Sans or web font request, no line texture, no heading letter animation, no fade-up, no message circle, no white cup cards, and no darker-lime token.
-
-### Colors
-- **Grounds:** The page ground is Deep Flyer Green, and the menu and how-it-works bands sit directly on it. Only the order band is Paper. The close band is Flyer Green. Running text defaults to On Dark Soft, and Body Green and Soft Green apply only inside the order band. The theme color is Flyer Green.
-- **Sauce Top and Sauce Low** are the no-JavaScript gradient for the stirring zone. Sauce Low also starts the first seam.
-- **Scene colors** are drawn on canvas, and are not interface tokens. Sauce: back surface #7c1610, body from rgba(179,39,26,.72) through rgba(131,24,15,.78) to #5f0e0a, drops #a51f14, flecks rgba(235,120,40,.55). Olive: #dcd568, #b3ad3a, #7e8421, #4a5512, pimento #f0432b and #a81a10. Lime slice: #5f9a1c, #e6f3a8, #cfe86a, #a4d42e.
-- **Focus:** The ring defaults to Logo Lime, and switches to Focus Green inside the order band.
-
-### Typography
-One family throughout: the system stack, with no separate display face. This records what the file ships. It is not a token, and new surfaces in this system take the display tokens above. Hierarchy comes from weight and case.
-- **Headings:** Weight 900, uppercase, -.02em, 1.02. Hero heading clamp(36px, 10.2vw, 78px), max 12ch, in white. Section headings clamp(32px, 8.4vw, 54px).
-- **Weight 900:** Brand name (15px uppercase, 17px from 760px), cup price (clamp(28px, 8vw, 36px)), step numeral (20px), stepper count (20px), order total (34px).
-- **Weight 800:** Buttons (17px), cup name (clamp(15px, 4.2vw, 18px), uppercase), step title (19px at 1.25), Facebook card (clamp(17px, 4.8vw, 20px)), order line name (17px), field label (16px), total label (20px).
-- **Body:** 16px at 1.65. The hero promise is 1.45. Bold in the written-order block is 700. The Cal Sans spacing rule does not apply.
-
-### Layout
-- **Header:** Inside the hero, on green, with On Dark brand text.
-- **Hero:** A column at least 92svh tall (92vh as fallback): header, copy, and a stirring zone that takes the remaining height, at least clamp(190px, 30svh, 340px). The canvas covers the whole hero. Buttons sit side by side from 760px with a 230px minimum width.
-- **Sections:** 56px top and 64px bottom, rising to 80px and 96px from 760px. These bands hold fixed, smaller top padding at every width, because a seam already sits above them or the bands run together: menu 40px, how-it-works 16px, order 32px, close 28px.
-- **Cups:** Centered, with 28px by 14px gaps on phones, 28px gaps at four columns from 760px, and no card behind them.
-- **Footer:** 36px top padding and 40px plus the safe area at the bottom.
-
-### Elevation & Depth
-The interactive version uses shadows on round frames, paired with a lime ring as a second shadow layer.
-- **Cup frame** (`box-shadow: 0 18px 34px -14px rgba(0,0,0,.65), 0 0 0 5px rgba(185,227,46,.9)`): Each round cup in the menu.
-- **Rider, phone** (`box-shadow: 0 14px 26px -10px rgba(0,0,0,.6), 0 0 0 4px rgba(185,227,46,.9)`): The hero cup under 1024px.
-- **Rider, desktop** (`box-shadow: 0 26px 50px -18px rgba(0,0,0,.6), 0 0 0 6px rgba(185,227,46,.9)`): The hero cup from 1024px.
-
-Canvas layering gives the hero its depth: back surface, far olives seen through the sauce, sauce body, flecks, near olives, lime slices, then anything in the air and drops.
-
-### Shapes
-Cups become circles. Each image is cropped to a 1:1 circle by its frame. The order band's form and image keep 24px corners, fields keep 10px, and the Facebook card keeps 20px.
-
-### Components
-- **Stirrable sauce hero:** A canvas pool of red sauce with 40 olives and 2 lime slices under 760px, 120 olives and 4 slices at 760px and up. Drag or mouse movement pushes olives within a 92px radius (85% of that on phones), ripples the surface, and a fast flick launches olives that fall back with a splash. Olives and drops stop at a ceiling just under the buttons, so they never cross the heading, promise or buttons. Until first touched, and again after 5s idle, the sauce stirs itself. Vertical drags still scroll the page. All physics values live in the page's config object.
-- **Stir hint:** "Go ahead, stir the sauce." at 15px, weight 600, On Dark, under the buttons. It fades over .5s on first touch, and is hidden under reduced motion.
-- **Rider:** The hero image in a round frame, 34vw under 1024px and min(30vw, 440px) from 1024px, sitting on the sauce's surface and rocking with it. It is decorative and hidden without JavaScript.
-- **Wave seams:** Three animated SVG dividers, clamp(52px, 9vw, 96px) tall: sauce to deep green, deep green to paper, paper to green. Each has three lines: a 3px Logo Lime middle line and two 1.5px outer lines in #7fa821 at 60% opacity. The next band's color fills below the middle line, so no straight color edge shows.
-- **Round cup:** A round frame with the image inside, with name and price centered below, and the arrow disc inline beside the price. Frames bob up to about 6.5px and rock about 1.2 degrees, each on its own phase. The arrow disc is 12% white with On Dark on the dark band, and turns Logo Lime with Ink on hover or focus.
-- **Facebook card:** Flyer Green with On Dark text, on the deep band.
-
-### Motion
-Everything moving shares one animation loop. Each job pauses when its element is more than 80px off screen. Under reduced motion the sauce and seams draw one still frame, and the cups stay still. The canvas caps device pixel ratio at 1.5. Without JavaScript, the stirring zone shows a static sauce gradient.

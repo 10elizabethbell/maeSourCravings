@@ -1,7 +1,7 @@
 # Mae's Sour Cravings
 
 - **Platform:** web
-- **Stack:** static single-file HTML/CSS/JS on GitHub Pages. Two versions: `index.html` (interactive, signature-motion style; the owner's pick, 2026-11-05) and `calm/index.html` (calm band style, kept as the alternative).
+- **Stack:** static single-file HTML/CSS/JS on GitHub Pages. One page, `index.html`, in the calm band style.
 - **Users:** people in San Antonio, TX and nearby who saw the olives on Facebook, on a phone, usually inside Facebook's in-app browser. They ask "where can I buy", "do you deliver", "where can I pick up".
 - **Purpose:** turn comment-thread questions into orders. First win over the owner, then take orders for her customers.
 - **Positioning:** olives preparados from one person, Aleda Gonzalez, brought to you at no extra delivery charge.

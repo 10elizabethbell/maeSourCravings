@@ -64,36 +64,6 @@
           "#d1fbdc"
         ]
       },
-      "sauce-top": {
-        "role": "tertiary",
-        "displayName": "Sauce Top",
-        "canonical": "#b3271a",
-        "tonalRamp": [
-          "#1f0000",
-          "#4c0200",
-          "#7e0a03",
-          "#b02317",
-          "#d84d3c",
-          "#ff7461",
-          "#ffb3a6",
-          "#ffe9e5"
-        ]
-      },
-      "sauce-low": {
-        "role": "tertiary",
-        "displayName": "Sauce Low",
-        "canonical": "#5f0e0a",
-        "tonalRamp": [
-          "#1f0000",
-          "#4d0101",
-          "#73221c",
-          "#97443a",
-          "#bd665a",
-          "#e4887c",
-          "#feb3a8",
-          "#ffe9e5"
-        ]
-      },
       "paper": {
         "role": "neutral",
         "displayName": "Paper",
@@ -302,22 +272,7 @@
       {
         "name": "float",
         "value": "0 10px 28px rgba(5,28,14,.32)",
-        "purpose": "Calm version: the message circle only."
-      },
-      {
-        "name": "cup-frame",
-        "value": "0 18px 34px -14px rgba(0,0,0,.65), 0 0 0 5px rgba(185,227,46,.9)",
-        "purpose": "Interactive version: each round cup in the menu."
-      },
-      {
-        "name": "rider-phone",
-        "value": "0 14px 26px -10px rgba(0,0,0,.6), 0 0 0 4px rgba(185,227,46,.9)",
-        "purpose": "Interactive version: the hero cup under 1024px."
-      },
-      {
-        "name": "rider-desktop",
-        "value": "0 26px 50px -18px rgba(0,0,0,.6), 0 0 0 6px rgba(185,227,46,.9)",
-        "purpose": "Interactive version: the hero cup from 1024px."
+        "purpose": "the message circle only."
       }
     ],
     "motion": [
@@ -339,22 +294,17 @@
       {
         "name": "fade-up",
         "value": "opacity and transform .4s ease-out, translateY(12px)",
-        "purpose": "Calm version: elements starting below the first screen, once."
+        "purpose": "elements starting below the first screen, once."
       },
       {
         "name": "message-circle-slide",
         "value": "transform .35s cubic-bezier(.2,.8,.2,1)",
-        "purpose": "Calm version: message circle entering and leaving."
+        "purpose": "message circle entering and leaving."
       },
       {
         "name": "heading-letters",
         "value": "1s cubic-bezier(.34,1.56,.64,1), 20ms stagger, from translateX(50px)",
-        "purpose": "Calm version: the hero heading on load, once."
-      },
-      {
-        "name": "hint-fade",
-        "value": "opacity .5s",
-        "purpose": "Interactive version: the stir hint on first touch."
+        "purpose": "the hero heading on load, once."
       }
     ],
     "breakpoints": [
@@ -389,7 +339,7 @@
       "name": "Cup Card",
       "kind": "card",
       "refersTo": "cup-card",
-      "description": "Calm version menu item. The whole card links to the order builder and adds one cup.",
+      "description": "Menu item. The whole card links to the order builder and adds one cup.",
       "html": "<a class=\"ds-cup\" href=\"#\"><img class=\"ds-cup-img\" src=\"img/cup-16.webp\" alt=\"16oz cup of olives in red sauce\"><span class=\"ds-cup-text\"><span class=\"ds-cup-name\">16oz</span><span class=\"ds-cup-price\">$16</span><span class=\"ds-arrow\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></span></a>",
       "css": ".ds-cup{display:grid;grid-template-rows:auto 1fr;width:240px;background:var(--card,#fff);border-radius:24px;overflow:hidden;text-decoration:none;color:var(--ink,#10341f)}.ds-cup-img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover;background:var(--field,#e7edd6)}.ds-cup-text{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:end;padding:14px}.ds-cup-name{grid-column:1/-1;font:400 20px/1.15 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif);letter-spacing:.01em;word-spacing:.06em}.ds-cup-price{font:400 34px/1 var(--display,\"Cal Sans\",\"Avenir Next\",\"Segoe UI\",system-ui,sans-serif)}.ds-arrow{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(16,52,31,.08);color:var(--ink,#10341f);transition:background-color .2s,color .2s}.ds-cup:hover .ds-arrow{background:var(--lime,#b9e32e)}.ds-cup:focus-visible{outline:none}.ds-cup:focus-visible .ds-arrow{background:var(--lime,#b9e32e);outline:3px solid var(--focus,#0f4a28);outline-offset:3px}"
     },
@@ -429,29 +379,14 @@
       "name": "Message Circle",
       "kind": "custom",
       "refersTo": "message-circle",
-      "description": "Calm version only. Fixed in the page; shown after the hero and hidden while the order form is on screen. Shown here in place.",
+      "description": "Fixed in the page; shown after the hero and hidden while the order form is on screen. Shown here in place.",
       "html": "<a class=\"ds-float\" href=\"#\" aria-label=\"Message Aleda on Messenger\"><svg viewBox=\"0 0 24 24\" width=\"22\" height=\"22\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 2.5C6.6 2.5 2.4 6.5 2.4 11.7c0 2.7 1.1 5 3 6.6.2.1.3.4.3.6l.1 1.7c0 .5.6.9 1.1.7l1.9-.8c.2-.1.3-.1.5-.1.8.2 1.7.3 2.6.3 5.4 0 9.6-4 9.6-9.2S17.4 2.5 12 2.5zm5.7 7.1-2.8 4.5c-.5.7-1.4.9-2.1.4l-2.2-1.7c-.2-.2-.5-.2-.7 0l-3 2.3c-.4.3-.9-.2-.7-.6l2.8-4.5c.5-.7 1.4-.9 2.1-.4l2.2 1.700c.2.2.5.2.7 0l3-2.300c.4-.3.9.2.7.6z\"/></svg></a>",
       "css": ".ds-float{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:var(--lime,#b9e32e);color:var(--ink,#10341f);box-shadow:0 10px 28px rgba(5,28,14,.32)}.ds-float svg{width:28px;height:28px}"
-    },
-    {
-      "name": "Round Cup",
-      "kind": "custom",
-      "refersTo": "round-cup-frame",
-      "description": "Interactive version menu item: a round frame with a lime ring on the deep band.",
-      "html": "<div class=\"ds-round-ground\"><a class=\"ds-round-cup\" href=\"#\"><span class=\"ds-round\"><img class=\"ds-round-img\" src=\"img/cup-16.webp\" alt=\"16oz cup of olives in red sauce\"></span><span class=\"ds-round-name\">16oz</span><span class=\"ds-round-price\">$16<span class=\"ds-round-arrow\"><svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></span></a></div>",
-      "css": ".ds-round-ground{background:var(--deep,#0a3019);padding:24px;width:240px}.ds-round-cup{display:grid;justify-items:center;gap:12px;text-align:center;text-decoration:none;color:var(--on-dark,#f5f8ee);font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"Helvetica Neue\",Arial,sans-serif}.ds-round{display:block;width:100%;aspect-ratio:1;border-radius:50%;overflow:hidden;box-shadow:0 18px 34px -14px rgba(0,0,0,.65),0 0 0 5px rgba(185,227,46,.9)}.ds-round-img{display:block;width:100%;height:100%;object-fit:cover}.ds-round-name{font-weight:800;font-size:18px;line-height:1.2;text-transform:uppercase}.ds-round-price{display:flex;align-items:center;gap:10px;font-weight:900;font-size:36px;line-height:1}.ds-round-arrow{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.12);transition:background-color .2s,color .2s}.ds-round-cup:hover .ds-round-arrow{background:var(--lime,#b9e32e);color:var(--ink,#10341f)}.ds-round-cup:focus-visible{outline:none}.ds-round-cup:focus-visible .ds-round-arrow{background:var(--lime,#b9e32e);color:var(--ink,#10341f);outline:3px solid var(--lime,#b9e32e);outline-offset:3px}"
-    },
-    {
-      "name": "Wave Seam",
-      "kind": "custom",
-      "description": "Interactive version divider between bands. The curves in this snippet are a static stand-in; the page redraws its lines each frame from three sine terms.",
-      "html": "<svg class=\"ds-seam\" viewBox=\"0 0 1000 100\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path class=\"ds-seam-fill\" d=\"M0 50 C250 20 450 80 700 45 S900 30 1000 55 L1000 100 L0 100 Z\"/><path class=\"ds-seam-outer\" d=\"M0 39 C250 9 450 69 700 34 S900 19 1000 44\"/><path class=\"ds-seam-mid\" d=\"M0 50 C250 20 450 80 700 45 S900 30 1000 55\"/><path class=\"ds-seam-outer\" d=\"M0 61 C250 31 450 91 700 56 S900 41 1000 66\"/></svg>",
-      "css": ".ds-seam{display:block;width:100%;height:96px;background:var(--deep,#0a3019)}.ds-seam-fill{fill:var(--paper,#f5f7ee)}.ds-seam-mid{fill:none;stroke:var(--lime,#b9e32e);stroke-width:3;stroke-linecap:round;vector-effect:non-scaling-stroke}.ds-seam-outer{fill:none;stroke:#7fa821;stroke-width:1.5;stroke-linecap:round;opacity:.6;vector-effect:non-scaling-stroke}"
     }
   ],
   "narrative": {
     "northStar": "The Flyer That Takes Orders",
-    "overview": "The system is her Facebook flyer's colors and images turned into a phone-first page that ends in a written order. Off-white paper alternates with two deep flyer greens in full-width bands. The logo's lime is the only accent, and it marks what to tap. Six images in `img/`, all crops of that flyer, supply all of the food color: the logo, a hero shot, and four cup images.\n\nDensity is low and the page is linear: header, hero, four cups, how it works, order builder, close, footer. Surfaces are flat, corners are generous, and actions are pills or circles. From 760px the layout widens in two steps without changing that sequence.\n\nThe calm version moves little. The hero heading animates in once, content below the first screen fades up 12px once, and the message circle slides in after the hero.",
+    "overview": "The system is her Facebook flyer's colors and images turned into a phone-first page that ends in a written order. Off-white paper alternates with two deep flyer greens in full-width bands. The logo's lime is the only accent, and it marks what to tap. Six images in `img/`, all crops of that flyer, supply all of the food color: the logo, a hero shot, and four cup images.\n\nDensity is low and the page is linear: header, hero, four cups, how it works, order builder, close, footer. Surfaces are flat, corners are generous, and actions are pills or circles. From 760px the layout widens in two steps without changing that sequence.\n\nThe page moves little. The hero heading animates in once, content below the first screen fades up 12px once, and the message circle slides in after the hero.",
     "keyCharacteristics": [
       "Full-width paper and green bands, with white cards only on paper.",
       "One accent, lime, as a fill carrying deep ink, or as text on dark bands.",
@@ -462,7 +397,7 @@
     "rules": [
       {
         "name": "The One Accent Rule",
-        "body": "Lime is the only accent in the interface. Greens and paper are grounds, and red in the interface is reserved for errors. The interactive version's sauce is scene, not interface.",
+        "body": "Lime is the only accent in the interface. Greens and paper are grounds, and red in the interface is reserved for errors.",
         "section": "colors"
       },
       {
@@ -472,7 +407,7 @@
       },
       {
         "name": "The Lime On Dark Rule",
-        "body": "Lime appears as text only on green bands: the accent phrase in a heading, and the footer link on hover. The calm page's direction note says lime is always a fill. The build also sets it as text on dark, and the build is what this records.",
+        "body": "Lime appears as text only on green bands: the accent phrase in a heading, and the footer link on hover. The page's direction note says lime is always a fill. The build also sets it as text on dark, and the build is what this records.",
         "section": "colors"
       },
       {
@@ -497,7 +432,7 @@
       },
       {
         "name": "The One Shadow Rule",
-        "body": "In the calm version, cards, the form and buttons carry no shadow. The single shadow belongs to the one fixed element.",
+        "body": "Cards, the form and buttons carry no shadow. The single shadow belongs to the one fixed element.",
         "section": "elevation"
       }
     ],
