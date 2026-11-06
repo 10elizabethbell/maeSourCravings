@@ -341,7 +341,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
       <fieldset class="field choice" id="f-day" aria-describedby="dayNote e-day" hidden>
         <legend>Which day?</legend>
         <div class="days" id="days"></div>
-        <p class="note" id="dayNote">I deliver Monday to Friday after 5pm, and Saturday and Sunday from 3pm to 10pm. I can't promise an exact time.</p>
+        <p class="note" id="dayNote">I'll text you to set a time.</p>
         <p class="err" id="e-day">Choose a day for delivery.</p>
       </fieldset>
       <div class="field" id="f-where">
@@ -398,7 +398,6 @@ var CONFIG = {
   PHONE: '+12106380378',                        // every order and text button texts this number
   DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
   SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
-  HOURS: {weekday: 'after 5pm', weekend: '3pm to 10pm'},
   ORDERS_API: ''                                // Apps Script web app URL (backend/SETUP.md); empty turns off the order log and daily caps
 };
 document.documentElement.classList.add('js');
@@ -446,9 +445,9 @@ document.documentElement.classList.add('js');
     var start=Date.UTC(+p.year,+p.month-1,+p.day),html='';
     for(var i=0,n=0;n<CONFIG.DAYS_AHEAD;i++){
       if(i===0&&+p.hour>=CONFIG.SAME_DAY_UNTIL)continue;
-      var d=new Date(start+i*864e5),wd=d.getUTCDay(),we=wd===0||wd===6;
+      var d=new Date(start+i*864e5);
       var f=function(o){return d.toLocaleDateString('en-US',Object.assign({timeZone:'UTC'},o))};
-      var label=f({weekday:'long',month:'short',day:'numeric'})+' ('+(we?CONFIG.HOURS.weekend:CONFIG.HOURS.weekday)+')';
+      var label=f({weekday:'long',month:'short',day:'numeric'});
       html+='<label class="opt day" data-date="'+f({month:'short',day:'numeric'})+'"><input type="radio" name="day" value="'+d.toISOString().slice(0,10)+'" data-label="'+label+'"><b>'+(i===0?'Today':f({weekday:'short'}))+'</b><small>'+f({month:'short',day:'numeric'})+'</small></label>';
       n++;
     }
