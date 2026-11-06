@@ -10,6 +10,8 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 ## What's built
 - **Sections:** header, hero ("Craving sour in San Antonio? I deliver."), four cups with published prices, Facebook link under them, how to get some, order builder, close, footer. Tapping a cup adds one to the order and jumps to the builder.
 - **Order builder:** steppers, running total, name and address. "Send the message" copies the order and shows a pop-up ("Order copied! Paste it in Messenger"). It stays up until they tap "Go to messenger" or the X. Tapping the X leaves them on the page with the order and an Open Messenger button. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
+- **Delivery or pickup:** required choice. Delivery asks for a day (the next 8 days as pills, from `CONFIG.DAYS_AHEAD`, San Antonio time) and the address; the message says "Delivery on: Sunday, Nov 8 (3pm to 10pm)". Pickup asks where they are now and says a meetup spot will follow. No time is ever asked for, per the owner.
+- **Not built yet: daily order caps** (owner asked 2026-11-06: 6 per weekday, 20 per weekend day). Needs a shared count the page can read, which a static page can't hold. See Ideas.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
 - **Look (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
 - **Contact:** Messenger only (`m.me/elita.gonzalez.9`), because that's how she takes orders and no phone is known.
@@ -32,7 +34,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 1. A phone number she'll take orders on? Does it accept texts?
 2. Who's Mae? Is "I'm Aleda" right?
 3. Does she offer pickup or shipping? Where does she deliver, and is there a minimum?
-4. Which days and hours? (The brief only has one day's "around 3-4pm", so it isn't on the page.)
+4. ~~Which days and hours?~~ Answered 2026-11-06: delivers Mon–Fri after 5pm, Sat–Sun 3pm–10pm, no set times. Still unknown: weekday end time, and whether same-day orders are OK (the page offers today until 10pm San Antonio time; `CONFIG.SAME_DAY_UNTIL`).
 5. What's in the sauce, and what are the dark chunks? Can the page name chamoy or similar?
 6. Is the business licensed or permitted? (The brief flags this as unknown. Worth knowing before promoting it.)
 7. Real photos of the cups?
@@ -42,6 +44,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 - **Impeccable findings left in on purpose (your choices):** eyebrow pills, stripe texture and letter bounce-in. The detector's "gray on color" warning for #cfdcc9 on green was also left: it's a green-tinted light colour with strong contrast.
 - **Orders that land in Messenger with no paste:** needs a Facebook Page for the business, a Meta app and a small server. The order goes in an `m.me/<page>?ref=` link, and the Page posts it into the chat. Meta's approval is likely needed before the public can use it. It would post as the Page, not as the customer.
 - **Spanish toggle:** her caption says "preparados" and much of the audience may read Spanish.
+- **Daily order caps (owner request):** a tiny backend that records each sent order by day and tells the page which days are full. Caveat: the page only knows they tapped Send, not that they pasted it into Messenger, so counts can run high; the owner needs a way to delete cancelled ones.
 - **Chatbot or order inbox:** a natural first paid software step, since she runs orders through comments.
 - **Google Business listing:** she has none.
 - **Interactive worlds considered (opt-in signature motion):** the stirrable sauce pool that was built and removed; squeezing a lime that sprays across the page; shaking a sealed cup with the phone's motion sensor.

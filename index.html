@@ -164,6 +164,10 @@ input[type=text]:focus{outline:none;border-color:var(--focus)}
 .opt:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:3px}
 .choice.bad .opt{border-color:var(--error)}
 .note{font-size:15px;color:var(--soft);margin:0}
+.days{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.opt.day{min-height:60px;border-radius:16px;padding:6px 4px;gap:3px;align-content:center;font-size:17px}
+.field .opt.day small{margin:0;font:400 14px/1 var(--text);color:var(--body)}
+.choice .note{margin-top:2px}
 .field.bad .err{display:block}
 form .btn-primary{width:100%}
 form .btn-primary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
@@ -304,7 +308,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
     <ol class="steps">
       <li class="rise"><div><b>Message me your order.</b><span>Which cups, and how many.</span></div></li>
       <li class="rise"><div><b>Tell me where you are.</b><span>San Antonio and surrounding areas.</span></div></li>
-      <li class="rise"><div><b>I bring it to you.</b><span>There's no extra charge for delivery.</span></div></li>
+      <li class="rise"><div><b>I bring it to you.</b><span>Monday to Friday after 5pm, and weekends from 3pm to 10pm. There's no extra charge for delivery.</span></div></li>
     </ol>
     <p class="ask-more rise">Need them shipped? Ask me in your message.</p>
   </div>
@@ -339,6 +343,12 @@ FORM: calm band system; order builder in place of a quote form because the job i
           <label class="opt"><input type="radio" name="how" value="pickup">Pickup</label>
         </div>
         <p class="err" id="e-how">Choose delivery or pickup.</p>
+      </fieldset>
+      <fieldset class="field choice" id="f-day" aria-describedby="dayNote e-day" hidden>
+        <legend>Which day?</legend>
+        <div class="days" id="days"></div>
+        <p class="note" id="dayNote">I deliver Monday to Friday after 5pm, and Saturday and Sunday from 3pm to 10pm. I can't promise an exact time.</p>
+        <p class="err" id="e-day">Choose a day for delivery.</p>
       </fieldset>
       <div class="field" id="f-where">
         <label for="where" id="whereLabel">Your address</label>
@@ -387,7 +397,10 @@ FORM: calm band system; order builder in place of a quote form because the job i
 /* ===== Config ===== */
 var CONFIG = {
   FLOAT: true,                                  // the floating message circle; false removes it
-  MESSENGER: 'https://m.me/elita.gonzalez.9'    // every order and message button goes here
+  MESSENGER: 'https://m.me/elita.gonzalez.9',   // every order and message button goes here
+  DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
+  SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
+  HOURS: {weekday: 'after 5pm', weekend: '3pm to 10pm'}
 };
 document.documentElement.classList.add('js');
 
@@ -423,14 +436,30 @@ document.documentElement.classList.add('js');
   var $=function(id){return document.getElementById(id)};
   rows.forEach(function(r){counts[r.dataset.id]=0});
   // Facebook's browser can reload a page after you leave it, so the order survives that
-  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value,h:how()}))}catch(e){}}
-  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||'';var r=form.querySelector('input[name=how][value="'+s.h+'"]');if(r)r.checked=true}}catch(e){}}
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value,h:how(),d:day()?day().value:''}))}catch(e){}}
+  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||'';var r=form.querySelector('input[name=how][value="'+s.h+'"]');if(r)r.checked=true;var dr=s.d&&form.querySelector('input[name=day][value="'+s.d+'"]');if(dr)dr.checked=true}}catch(e){}}
+  function day(){var r=form.querySelector('input[name=day]:checked');return r||null}
+  // the next few delivery days in San Antonio time, as radio pills
+  function days(){
+    var p={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
+    var start=Date.UTC(+p.year,+p.month-1,+p.day),html='';
+    for(var i=0,n=0;n<CONFIG.DAYS_AHEAD;i++){
+      if(i===0&&+p.hour>=CONFIG.SAME_DAY_UNTIL)continue;
+      var d=new Date(start+i*864e5),wd=d.getUTCDay(),we=wd===0||wd===6;
+      var f=function(o){return d.toLocaleDateString('en-US',Object.assign({timeZone:'UTC'},o))};
+      var label=f({weekday:'long',month:'short',day:'numeric'})+' ('+(we?CONFIG.HOURS.weekend:CONFIG.HOURS.weekday)+')';
+      html+='<label class="opt day"><input type="radio" name="day" value="'+d.toISOString().slice(0,10)+'" data-label="'+label+'"><b>'+(i===0?'Today':f({weekday:'short'}))+'</b><small>'+f({month:'short',day:'numeric'})+'</small></label>';
+      n++;
+    }
+    $('days').innerHTML=html;
+  }
   function how(){var r=form.querySelector('input[name=how]:checked');return r?r.value:''}
   // pickup still asks where they are, so Aleda can pick a meetup spot near them
   function mode(){
     var p=how()==='pickup';
     $('whereLabel').textContent=p?'Where you are right now':'Your address';
     $('whereNote').hidden=!p;
+    $('f-day').hidden=how()!=='delivery';
     $('e-where').textContent=p?'Add where you are so I can find a meetup spot near you.':'Add your address so I know where to bring it.';
     $('totalNote').textContent=p?'Pickup':'Delivery included';
   }
@@ -457,6 +486,7 @@ document.documentElement.classList.add('js');
   form.addEventListener('input',function(e){
     var f=e.target.closest('.field');
     if(e.target.name==='how'){$('f-how').classList.remove('bad');mode()}
+    else if(e.target.name==='day')$('f-day').classList.remove('bad');
     else if(f&&e.target.value.trim())f.classList.remove('bad');
     stale();save();
   });
@@ -488,20 +518,22 @@ document.documentElement.classList.add('js');
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=$('name').value.trim(),where=$('where').value.trim(),h=how();
+    var name=$('name').value.trim(),where=$('where').value.trim(),h=how(),dy=h==='delivery'?day():null;
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
     var noItems=!items.length;
     $('e-lines').hidden=!noItems;
     $('f-name').classList.toggle('bad',!name);
     $('f-how').classList.toggle('bad',!h);
+    $('f-day').classList.toggle('bad',h==='delivery'&&!dy);
     $('f-where').classList.toggle('bad',!where);
     $('name').setAttribute('aria-invalid',name?'false':'true');
     $('where').setAttribute('aria-invalid',where?'false':'true');
     if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
     if(!name){$('name').focus();return}
     if(!h){form.querySelector('input[name=how]').focus();return}
+    if(h==='delivery'&&!dy){var fd=form.querySelector('input[name=day]');if(fd)fd.focus();return}
     if(!where){$('where').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.':'\nDelivery to: '+where);
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.':'\nDelivery on: '+dy.dataset.label+'\nDelivery to: '+where);
     $('sentText').textContent=msg;
     $('sent').hidden=false;$('after').hidden=true;
     // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
@@ -511,7 +543,7 @@ document.documentElement.classList.add('js');
       else{$('sentLink').focus({preventScroll:true});$('sent').scrollIntoView({block:'nearest',behavior:'smooth'})}
     });
   });
-  restore();mode();render();
+  days();restore();mode();render();
 })();
 
 /* ===== Floating message circle: shows after the hero, hides while the form is on screen ===== */
