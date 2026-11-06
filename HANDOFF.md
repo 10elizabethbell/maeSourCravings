@@ -15,7 +15,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 - **Daily order caps (owner request 2026-11-06):** 6 deliveries per weekday, 20 per weekend day. Orders log to a Google Sheet through an Apps Script web app (`backend/orders.gs`, setup in `backend/SETUP.md`); full days show as "Full" and can't be picked, and the script refuses an order for a day that filled meanwhile. Pickup is logged but not counted. Off until `CONFIG.ORDERS_API` is set. If Google can't be reached, every day stays open.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
 - **Look (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating text circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
-- **Contact:** text only, to (210) 638-0378 (`CONFIG.PHONE`), switched from Messenger on 2026-11-06 at Ellie's request. The number is in the header's top-right, the hero button, the floating circle and the footer. Never a Call button. The Facebook links still go to her personal profile.
+- **Contact:** text only, to (210) 638-0378 (`CONFIG.PHONE`), switched from Messenger on 2026-11-06 at Ellie's request. The number is in the header's top-right, the floating circle and the footer. The hero has only a See the menu button (Ellie, 2026-11-06). Never a Call button. The Facebook links still go to her personal profile.
 
 ## Assumptions I made
 - **"Aleda" as the voice:** the brief names Aleda Gonzalez as owner, but the brand says Mae. I don't know who Mae is.

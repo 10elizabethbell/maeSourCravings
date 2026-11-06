@@ -240,7 +240,7 @@ Phone first, with min-width breakpoints at 760px and 1024px. Content sits in a c
 
 - **Section heads:** Stacked with a 16px gap, max 640px wide.
 - **Cups:** Two columns with a 12px gap on phones, four columns with a 16px gap from 760px, starting 32px under the head. The Facebook card follows 20px below, capped at 520px from 760px.
-- **Hero:** On phones the copy stacks with an 18px gap above the hero image, at 7:4, which fades in from the top over 26% of its height. Buttons stack with a 12px gap, and sit side by side from 760px with a 210px minimum width, where the image is capped at 440px tall. From 1024px the hero is at least 600px tall, the copy holds the left 46%, and the image fills the right 50% at full height, fading in from its left edge over 12% of its width.
+- **Hero:** On phones the copy stacks with an 18px gap above the hero image, at 7:4, which fades in from the top over 26% of its height. One primary button, See the menu, with a 210px minimum width from 760px, where the image is capped at 440px tall. From 1024px the hero is at least 600px tall, the copy holds the left 46%, and the image fills the right 50% at full height, fading in from its left edge over 12% of its width.
 - **Steps:** One column with a 24px gap, starting 36px under the heading. Three columns with a 40px gap from 1024px.
 - **Order:** One column with a 28px gap. From 1024px, two columns at 1fr and 1.2fr with a 64px gap, and the 16oz pickle image appears under the head at 24px corners. The form is capped at 600px wide, with a 20px internal gap.
 - **Close:** Logo (150px) above the text. From 1024px, logo (180px) beside the text with a 40px gap.
