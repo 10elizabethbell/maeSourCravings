@@ -14,7 +14,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 - **Not built yet: daily order caps** (owner asked 2026-11-06: 6 per weekday, 20 per weekend day). Needs a shared count the page can read, which a static page can't hold. See Ideas.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
 - **Look (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
-- **Contact:** Messenger only (`m.me/elita.gonzalez.9`), because that's how she takes orders and no phone is known.
+- **Contact:** Messenger only (`m.me/61596070413692`, her business Page "MAE’s Olives Preparados", switched from her personal profile on 2026-11-06 at Ellie’s request), because that’s how she takes orders and no phone is known.
 
 ## Assumptions I made
 - **"Aleda" as the voice:** the brief names Aleda Gonzalez as owner, but the brand says Mae. I don't know who Mae is.
