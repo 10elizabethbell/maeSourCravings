@@ -1,10 +1,11 @@
 # Mae's Sour Cravings — handoff at ~60%
 
-**Live:** https://10elizabethbell.github.io/maeSourCravings/ (interactive version, the owner's pick)
-**Calm version (kept, not linked):** https://10elizabethbell.github.io/maeSourCravings/calm/
+**Live:** https://maesolivespreparados.com/ (interactive version, the owner's pick)
+**Calm version (kept, not linked):** https://maesolivespreparados.com/calm/
 **Repo:** https://github.com/10elizabethbell/maeSourCravings · **Built:** 2026-11-01 from Muse brief 2026-11-01
 
 Ellie asked mid-build for two versions: the current calm style and the older interactive style. On 2026-11-05 the owner chose the interactive one, so it moved to the main URL (the one on the Call Sheet) and the calm one moved to `/calm/`. Delete `calm/` once she's sure. The old `/interactive/` link redirects to the main URL, so links already sent still work.
+Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` records to GitHub Pages (185.199.108–111.153), `www` CNAME. The repo's `CNAME` file sets it; the old github.io links forward to it.
 
 ## What's built
 - **Both:** header, hero ("Craving sour in San Antonio? I deliver."), four cups with published prices, Facebook link under them, how to get some, order builder, close, footer. Tapping a cup adds one to the order and jumps to the builder.
