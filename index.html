@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mae's Sour Cravings · Olives preparados delivered in San Antonio</title>
-<meta name="description" content="Olives preparados from Aleda, delivered around San Antonio, TX with no extra charge for delivery. 8oz $8, 16oz $16, with pickles $12 and $20. Message me to order.">
+<meta name="description" content="Olives preparados from Aleda, delivered around San Antonio, TX with no extra charge for delivery. 8oz $8, 16oz $16, with pickles $12 and $20. Text me to order.">
 <meta name="theme-color" content="#f5f7ee">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Mae's Sour Cravings · Craving sour in San Antonio? I deliver.">
-<meta property="og:description" content="Olives preparados from Aleda. No extra charge for delivery. Message me to order.">
+<meta property="og:description" content="Olives preparados from Aleda. No extra charge for delivery. Text me to order.">
 <meta property="og:url" content="https://maesolivespreparados.com/">
 <meta property="og:image" content="https://maesolivespreparados.com/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -91,7 +91,9 @@ section{padding:64px 0}
 .brand{display:flex;align-items:center;gap:10px;min-height:44px;text-decoration:none}
 .brand img{width:52px;height:52px;flex:none}
 .brand b{font:400 19px/1.05 var(--display)}
-.place{font-size:15px;line-height:1.2;color:var(--soft);text-align:right;white-space:nowrap}
+.place{display:grid;justify-items:end;gap:2px;min-height:44px;align-content:center;text-decoration:none;text-align:right;white-space:nowrap}
+.place b{font:400 18px/1.1 var(--display);color:var(--ink)}
+.place span{font-size:14px;line-height:1.1;color:var(--soft)}
 
 /* ---------- Hero ---------- */
 .hero{padding:0;position:relative;background-color:var(--green);background-image:var(--texture);color:var(--on-dark);overflow:hidden}
@@ -239,36 +241,26 @@ footer a:hover{color:var(--lime)}
   .js .rise.below{opacity:1;transform:none}
   .hero h1 .c{animation:none;opacity:1;transform:none}
 }
-/* ---------- Pop-up before Messenger opens ---------- */
-.popup{width:min(420px,calc(100vw - 40px));border:0;border-radius:24px;padding:24px;background:#fff;color:var(--ink);box-shadow:0 24px 60px -16px rgba(5,28,14,.55)}
-.popup::backdrop{background:rgba(5,28,14,.6)}
-.popup p{font-size:20px;line-height:1.35;font-weight:600;margin:0 40px 20px 0}
-.popup-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
-.popup-x svg{width:20px;height:20px}
-.popup-x:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
-.popup .btn{width:100%}
-.popup .btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-@media (hover:hover){.popup-x:hover{background:var(--field)}}
 </style>
 </head>
 <body>
 <!--
 THESIS: A home food seller whose customers keep asking "where can I buy?" gets one page that answers it on the first screen and writes their order for them.
 OWN-WORLD: Off-white paper, the flyer's deep greens as bands (faint line texture), the logo's lime as the one accent, always a fill with deep green text. Her real cups do the appetite work. Cal Sans display, system body 16/1.7.
-STORY: See the olives, see it's San Antonio and delivered, see the four cups and prices, tap what you want, send it to Aleda on Messenger.
+STORY: See the olives, see it's San Antonio and delivered, see the four cups and prices, tap what you want, text it to Aleda.
 FIRST VIEWPORT: Paper header with her logo. Green hero: eyebrow, "Craving sour in San Antonio? I deliver.", one promise, two pill buttons, her 16oz cup fading up out of the green.
-FORM: calm band system; order builder in place of a quote form because the job is order-taking; Messenger in place of text because she has no public phone.
+FORM: calm band system; order builder in place of a quote form because the job is order-taking; text (sms: with the order pre-written) because that's how she takes orders.
 -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 2.5C6.6 2.5 2.4 6.5 2.4 11.7c0 2.7 1.1 5 3 6.6.2.1.3.4.3.6l.1 1.7c0 .5.6.9 1.1.7l1.9-.8c.2-.1.3-.1.5-.1.8.2 1.7.3 2.6.3 5.4 0 9.6-4 9.6-9.2S17.400 2.500 12 2.500zm5.700 7.100-2.800 4.500c-.5.700-1.400.9-2.100.4l-2.200-1.700c-.2-.2-.5-.2-.7 0l-3 2.300c-.4.300-.9-.2-.7-.6l2.800-4.500c.5-.700 1.400-.9 2.100-.4l2.200 1.700c.2.200.5.200.7 0l3-2.300c.4-.3.900.2.700.6z" fill="currentColor"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M4.5 3.5h15a2.5 2.5 0 0 1 2.5 2.5v9.5a2.5 2.5 0 0 1-2.5 2.5H10l-4.6 3.4c-.5.4-1.2 0-1.2-.6V18h.3A2.5 2.5 0 0 1 2 15.5V6a2.5 2.5 0 0 1 2.5-2.5z" fill="currentColor"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
   <symbol id="i-minus" viewBox="0 0 24 24"><path d="M4 12h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
 </svg>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#" aria-label="Mae's Sour Cravings, back to top"><img src="img/logo.webp" alt="" width="52" height="52"><b>Mae's Sour<br>Cravings</b></a>
-    <span class="place">San Antonio, TX</span>
+    <a class="place" href="sms:+12106380378" aria-label="Text (210) 638-0378"><b>(210) 638-0378</b><span>Text to order</span></a>
   </div>
 </header>
 
@@ -279,7 +271,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
     <h1 id="h1">Craving sour in San Antonio? <span class="accent">I deliver.</span></h1>
     <p class="promise">I'm <b>Aleda.</b> Tell me what you want and I'll bring it to you, with no extra charge for delivery.</p>
     <div class="actions">
-      <a class="btn btn-primary" data-msg href="https://m.me/61596070413692"><svg aria-hidden="true"><use href="#i-msg"/></svg>Message me to order</a>
+      <a class="btn btn-primary" data-msg href="sms:+12106380378"><svg aria-hidden="true"><use href="#i-msg"/></svg>Text me to order</a>
       <a class="btn btn-ghost" href="#menu">See the menu</a>
     </div>
   </div>
@@ -309,7 +301,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
   <div class="wrap">
     <h2 id="h-how" class="rise">How to <span class="accent">get some.</span></h2>
     <ol class="steps">
-      <li class="rise"><div><b>Message me your order.</b><span>Which cups, and how many.</span></div></li>
+      <li class="rise"><div><b>Text me your order.</b><span>Which cups, and how many.</span></div></li>
       <li class="rise"><div><b>Tell me where you are.</b><span>San Antonio and surrounding areas.</span></div></li>
       <li class="rise"><div><b>I bring it to you.</b><span>Monday to Friday after 5pm, and weekends from 3pm to 10pm. There's no extra charge for delivery.</span></div></li>
     </ol>
@@ -368,13 +360,13 @@ FORM: calm band system; order builder in place of a quote form because the job i
         </div>
         <p class="err" id="e-pay">Choose how you'll pay.</p>
       </fieldset>
-      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send the message</button>
+      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Text my order</button>
       <div class="sent" id="sent" role="status" hidden>
-        <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
+        <p><b>Your order is written.</b> Didn't open your texts? Tap below, or text it to (210) 638-0378.</p>
         <pre id="sentText"></pre>
-        <a class="btn btn-primary" id="sentLink" href="https://m.me/61596070413692"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger</a>
+        <a class="btn btn-primary" id="sentLink" href="sms:+12106380378"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open my texts</a>
       </div>
-      <p class="after" id="after">Opens Messenger so you can send it to me.</p>
+      <p class="after" id="after">Opens your texts with your order already written. Just hit send.</p>
     </form>
   </div>
 </section>
@@ -392,24 +384,19 @@ FORM: calm band system; order builder in place of a quote form because the job i
 
 <footer>
   <div class="wrap">
-    <span>Mae's Sour Cravings · Aleda Gonzalez · San Antonio, TX</span>
+    <span>Mae's Sour Cravings · Aleda Gonzalez · San Antonio, TX · <a href="sms:+12106380378">(210) 638-0378</a></span>
     <a href="https://facebook.com/elita.gonzalez.9" rel="noopener">Facebook</a>
   </div>
 </footer>
 
-<a class="float" id="float" data-msg href="https://m.me/61596070413692" aria-label="Message Aleda on Messenger"><svg aria-hidden="true"><use href="#i-msg"/></svg></a>
+<a class="float" id="float" data-msg href="sms:+12106380378" aria-label="Text Aleda at (210) 638-0378"><svg aria-hidden="true"><use href="#i-msg"/></svg></a>
 
-<dialog class="popup" id="popup" aria-labelledby="popupText">
-  <button class="popup-x" id="popupClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
-  <p id="popupText">Order copied! Paste it in Messenger</p>
-  <a class="btn btn-primary" id="popupGo" href="https://m.me/61596070413692" autofocus><svg aria-hidden="true"><use href="#i-msg"/></svg>Go to messenger</a>
-</dialog>
 
 <script>
 /* ===== Config ===== */
 var CONFIG = {
   FLOAT: true,                                  // the floating message circle; false removes it
-  MESSENGER: 'https://m.me/61596070413692',   // every order and message button goes here
+  PHONE: '+12106380378',                        // every order and text button texts this number
   DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
   SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
   HOURS: {weekday: 'after 5pm', weekend: '3pm to 10pm'},
@@ -441,7 +428,7 @@ document.documentElement.classList.add('js');
   if(last)last.addEventListener('animationend',function(){h.innerHTML=plain;h.removeAttribute('aria-label')});
 })();
 
-/* ===== Order builder: adds up the cups, writes the message, hands it to Messenger ===== */
+/* ===== Order builder: adds up the cups, writes the message, hands it to her texts ===== */
 (function(){
   var form=document.getElementById('orderForm');if(!form)return;
   var KEY='maes-order';
@@ -495,11 +482,10 @@ document.documentElement.classList.add('js');
   function logOrder(o){
     if(!CONFIG.ORDERS_API||!window.fetch)return;
     // text/plain keeps this a simple request, which Apps Script accepts from another site
-    fetch(CONFIG.ORDERS_API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)})
+    fetch(CONFIG.ORDERS_API,{method:'POST',keepalive:true,headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(o)})
       .then(function(r){return r.json()}).then(function(j){
         if(j&&j.full)markFull(j.full);
         if(j&&j.error==='full'){
-          var d=$('popup');if(d.open)d.close();
           $('sent').hidden=true;$('after').hidden=false;orderId='';
           $('e-day').textContent='Sorry, that day just filled up. Pick another day.';
           $('f-day').classList.add('bad');
@@ -534,34 +520,8 @@ document.documentElement.classList.add('js');
     else if(f&&e.target.value.trim())f.classList.remove('bad');
     stale();save();
   });
-  function copy(text,done){
-    // must start inside the tap; Facebook's browser may refuse both of these
-    var ok=false,pre=$('sentText');
-    try{
-      var range=document.createRange();range.selectNodeContents(pre);
-      var sel=getSelection();sel.removeAllRanges();sel.addRange(range);
-      ok=document.execCommand('copy');sel.removeAllRanges();
-    }catch(e){}
-    if(ok){done(true);return}
-    if(navigator.clipboard&&navigator.clipboard.writeText){
-      navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});
-    }else done(false);
-  }
-  // stays up until they tap Go to messenger or the X
-  function popup(){
-    var d=$('popup');
-    function go(){if(d.open)d.close();location.href=CONFIG.MESSENGER}
-    if(!d.showModal){go();return}
-    // a real link, not script navigation: iPhones only hand m.me to the Messenger app from a tapped link
-    $('popupGo').href=CONFIG.MESSENGER;
-    $('popupGo').onclick=function(){d.close()};
-    $('popupClose').onclick=function(){d.close()};
-    d.showModal();
-  }
-  function tell(copied){
-    $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
-    $('sentHow').textContent=copied?'Paste it in our chat on Messenger.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
-  }
+  // iPhones and Android both read sms:NUMBER?&body=TEXT
+  function smsLink(text){return 'sms:'+CONFIG.PHONE+'?&body='+encodeURIComponent(text)}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     var name=$('name').value.trim(),where=$('where').value.trim(),h=how(),dy=h==='delivery'?day():null,py=pay();
@@ -587,13 +547,10 @@ document.documentElement.classList.add('js');
     if(!orderId){orderId=Date.now().toString(36)+Math.random().toString(36).slice(2,8);save()}
     var order={id:orderId,type:h,day:dy?dy.value:'',name:name,where:where,total:$('total').textContent,pay:py,
       items:items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join(', ')};
-    // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
-    copy(msg,function(ok){
-      tell(ok);
-      if(ok)popup();
-      else{$('sentLink').focus({preventScroll:true});$('sent').scrollIntoView({block:'nearest',behavior:'smooth'})}
-    });
     logOrder(order);
+    // one tap: open their texts to her number with the order already written
+    var link=smsLink(msg);$('sentLink').href=link;
+    location.href=link;
   });
   days();restore();mode();render();loadFull();
 })();

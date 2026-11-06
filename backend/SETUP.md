@@ -39,8 +39,8 @@ needs to stay on.
 
 ## Limits
 
-- The site only knows someone tapped **Send the message**, not that they pasted it
-  into Messenger, so a day can show Full early. Deleting rows fixes that.
+- The site only knows someone tapped **Text my order**, not that they actually sent
+  the text, so a day can show Full early. Deleting rows fixes that.
 - The web app URL is public. Someone could send junk orders to fill days; Mae would
   see and delete them. If that ever happens, move to a backend with rate limiting.
 - If Google can't be reached, the site keeps every day open rather than blocking orders.

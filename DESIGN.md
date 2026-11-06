@@ -1,6 +1,6 @@
 ---
 name: Mae's Sour Cravings
-description: Olives preparados from Aleda, delivered around San Antonio, ordered through a one-page order builder and Messenger.
+description: Olives preparados from Aleda, delivered around San Antonio, ordered through a one-page order builder and a pre-written text message.
 colors:
   lime: "#b9e32e"
   lime-2: "#cdf04f"
@@ -290,7 +290,7 @@ The page's working component, in a white form card.
 - **Lines:** One row per cup, split by hairlines with 12px vertical padding. Name in Cal Sans, price below in Small, stepper on the right.
 - **Stepper:** Two 46px Pale Field circles holding 16px drawn plus and minus icons, either side of a 30px count. Border turns Focus Green on hover. Minus at zero is disabled at 45% opacity.
 - **Total:** Label left, 34px amount right, under the 2px Ink rule, baseline aligned.
-- **Written order:** After submit, a status block shows a lead line, instructions, the message in a Pale Field block, and an Open Messenger primary button. Any later edit hides it again.
+- **Written order:** After submit, a status block shows a lead line, instructions, the message in a Pale Field block, and an Open my texts primary button. Any later edit hides it again.
 
 ### Navigation
 There is no menu. The header is a brand link and a place name: a 52px logo beside the two-line brand name on the left, and "San Antonio, TX" on the right in Soft Green, on paper at 68px minimum height. Footer links are On Dark and turn lime on hover.
@@ -304,7 +304,7 @@ Green band with the line texture, with copy over the 16oz cup image, which fades
 The heading animates once on load: each letter slides in from 50px right over 1s on `cubic-bezier(.34,1.56,.64,1)`, staggered 20ms. Once the last letter lands, the plain heading is restored so kerning and selection return. With JavaScript off or reduced motion on, the heading is static.
 
 ### Message Circle
-A fixed 60px Logo Lime circle with a 28px drawn message icon, 16px from the bottom right plus safe area, linking to Messenger. It slides up from 120px below over .35s on `cubic-bezier(.2,.8,.2,1)` once the hero leaves, and hides while the order form is on screen. It is removed if the page config turns it off or IntersectionObserver is missing.
+A fixed 60px Logo Lime circle with a 28px drawn message icon, 16px from the bottom right plus safe area, linking to a text to her number. It slides up from 120px below over .35s on `cubic-bezier(.2,.8,.2,1)` once the hero leaves, and hides while the order form is on screen. It is removed if the page config turns it off or IntersectionObserver is missing.
 
 ### Fade-Up
 Elements that start below the first screen fade in and rise 12px over .4s ease-out, once. Everything else is visible at rest.
