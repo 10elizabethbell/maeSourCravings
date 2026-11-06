@@ -24,7 +24,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 
 ## Placeholders and gaps
 - **No phone or email,** so neither appears, and the header's top-right holds "San Antonio, TX" instead of a number. **This is the biggest gap:** with a number, the whole order flow could become a pre-filled text.
-- **Only one image exists:** the flyer. All cups, the logo and the hero are crops of it (1080x1262). They look slightly soft at large desktop sizes, and I painted the logo's edge out of the area above the 16oz cup.
+- **Images:** the logo, hero and plain cups are crops of her first flyer (1080x1262). The two pickle cups (green brine) are crops of a second flyer Ellie supplied on 2026-11-05 (833x403), so they're small, about 336px wide. They look slightly soft at large desktop sizes, and I painted the logo's edge out of the area above the 16oz cup.
 - **The flyer's cups look AI-rendered or heavily retouched.** It came from her own post, but real phone photos would be more honest and stronger.
 - **Deliberately not shown:** pickup, shipping, hours, ingredients, reviews. The page says to ask about pickup and shipping.
 
