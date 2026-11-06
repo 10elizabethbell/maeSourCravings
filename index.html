@@ -155,6 +155,15 @@ input[type=text]:focus{outline:none;border-color:var(--focus)}
 .err{font-size:15px;color:var(--error)}
 .field.bad input[type=text]{border-color:var(--error)}
 .field .err{display:none}
+.choice{border:0;margin:0;padding:0;min-width:0;display:grid;gap:8px}
+.choice legend{padding:0;margin-bottom:8px;font:400 17px/1.2 var(--display);color:var(--ink);letter-spacing:.01em;word-spacing:.06em}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{position:relative;display:grid;place-items:center;min-height:52px;padding:0 12px;border-radius:var(--pill);background:var(--field);border:2px solid transparent;font:400 18px/1 var(--display);letter-spacing:.01em;color:var(--ink);cursor:pointer;transition:background-color .15s,border-color .15s}
+.opt input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.opt:has(input:checked){background:var(--lime);border-color:var(--lime)}
+.opt:has(input:focus-visible){outline:3px solid var(--focus);outline-offset:3px}
+.choice.bad .opt{border-color:var(--error)}
+.note{font-size:15px;color:var(--soft);margin:0}
 .field.bad .err{display:block}
 form .btn-primary{width:100%}
 form .btn-primary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
@@ -212,6 +221,7 @@ footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-d
 .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
 .cup:hover .arrow,.fb:hover .arrow{background:var(--lime);color:var(--ink)}
 input[type=text]:hover{border-color:var(--focus)}
+.opt:hover{border-color:var(--focus)}
 .step button:not(:disabled):hover{border-color:var(--focus)}
 form .btn-primary:hover{outline:2px solid var(--focus);outline-offset:2px}
 footer a:hover{color:var(--lime)}
@@ -296,7 +306,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
       <li class="rise"><div><b>Tell me where you are.</b><span>San Antonio and surrounding areas.</span></div></li>
       <li class="rise"><div><b>I bring it to you.</b><span>There's no extra charge for delivery.</span></div></li>
     </ol>
-    <p class="ask-more rise">Want to pick up, or need them shipped? Ask me in your message.</p>
+    <p class="ask-more rise">Need them shipped? Ask me in your message.</p>
   </div>
 </section>
 
@@ -315,16 +325,25 @@ FORM: calm band system; order builder in place of a quote form because the job i
         <li data-id="c" data-name="8oz with pickles" data-price="12"><span class="line-name">8oz with pickles<small>$12</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 8oz with pickles" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 8oz with pickles"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
         <li data-id="d" data-name="16oz with pickles" data-price="20"><span class="line-name">16oz with pickles<small>$20</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 16oz with pickles" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 16oz with pickles"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
       </ul>
-      <div class="total"><span>Total<small>Delivery included</small></span><strong id="total">$0</strong></div>
+      <div class="total"><span>Total<small id="totalNote">Delivery included</small></span><strong id="total">$0</strong></div>
       <p class="err" id="e-lines" role="alert" hidden>Add at least one cup so I know what to bring.</p>
       <div class="field" id="f-name">
         <label for="name">Your name</label>
         <input type="text" id="name" name="name" autocomplete="given-name" maxlength="60" placeholder="First name is fine" aria-describedby="e-name">
         <p class="err" id="e-name">Add your name so I know who's ordering.</p>
       </div>
+      <fieldset class="field choice" id="f-how" aria-describedby="e-how">
+        <legend>Delivery or pickup?</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="how" value="delivery">Delivery</label>
+          <label class="opt"><input type="radio" name="how" value="pickup">Pickup</label>
+        </div>
+        <p class="err" id="e-how">Choose delivery or pickup.</p>
+      </fieldset>
       <div class="field" id="f-where">
-        <label for="where">Your address</label>
-        <input type="text" id="where" name="where" autocomplete="street-address" maxlength="120" placeholder="Street, city" aria-describedby="e-where">
+        <label for="where" id="whereLabel">Your address</label>
+        <input type="text" id="where" name="where" autocomplete="street-address" maxlength="120" placeholder="Street, city" aria-describedby="whereNote e-where">
+        <p class="note" id="whereNote" hidden>I'll message you a meetup spot near you.</p>
         <p class="err" id="e-where">Add your address so I know where to bring it.</p>
       </div>
       <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send the message</button>
@@ -404,8 +423,17 @@ document.documentElement.classList.add('js');
   var $=function(id){return document.getElementById(id)};
   rows.forEach(function(r){counts[r.dataset.id]=0});
   // Facebook's browser can reload a page after you leave it, so the order survives that
-  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value}))}catch(e){}}
-  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||''}}catch(e){}}
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value,h:how()}))}catch(e){}}
+  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||'';var r=form.querySelector('input[name=how][value="'+s.h+'"]');if(r)r.checked=true}}catch(e){}}
+  function how(){var r=form.querySelector('input[name=how]:checked');return r?r.value:''}
+  // pickup still asks where they are, so Aleda can pick a meetup spot near them
+  function mode(){
+    var p=how()==='pickup';
+    $('whereLabel').textContent=p?'Where you are right now':'Your address';
+    $('whereNote').hidden=!p;
+    $('e-where').textContent=p?'Add where you are so I can find a meetup spot near you.':'Add your address so I know where to bring it.';
+    $('totalNote').textContent=p?'Pickup':'Delivery included';
+  }
   function stale(){$('sent').hidden=true;$('after').hidden=false}
   function render(){
     var sum=0;
@@ -428,7 +456,8 @@ document.documentElement.classList.add('js');
   });
   form.addEventListener('input',function(e){
     var f=e.target.closest('.field');
-    if(f&&e.target.value.trim())f.classList.remove('bad');
+    if(e.target.name==='how'){$('f-how').classList.remove('bad');mode()}
+    else if(f&&e.target.value.trim())f.classList.remove('bad');
     stale();save();
   });
   function copy(text,done){
@@ -459,18 +488,20 @@ document.documentElement.classList.add('js');
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=$('name').value.trim(),where=$('where').value.trim();
+    var name=$('name').value.trim(),where=$('where').value.trim(),h=how();
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
     var noItems=!items.length;
     $('e-lines').hidden=!noItems;
     $('f-name').classList.toggle('bad',!name);
+    $('f-how').classList.toggle('bad',!h);
     $('f-where').classList.toggle('bad',!where);
     $('name').setAttribute('aria-invalid',name?'false':'true');
     $('where').setAttribute('aria-invalid',where?'false':'true');
     if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
     if(!name){$('name').focus();return}
+    if(!h){form.querySelector('input[name=how]').focus();return}
     if(!where){$('where').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nMy address: '+where;
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.':'\nDelivery to: '+where);
     $('sentText').textContent=msg;
     $('sent').hidden=false;$('after').hidden=true;
     // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
@@ -480,7 +511,7 @@ document.documentElement.classList.add('js');
       else{$('sentLink').focus({preventScroll:true});$('sent').scrollIntoView({block:'nearest',behavior:'smooth'})}
     });
   });
-  restore();render();
+  restore();mode();render();
 })();
 
 /* ===== Floating message circle: shows after the hero, hides while the form is on screen ===== */
