@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mae's Sour Cravings · Olives preparados delivered in San Antonio</title>
+<meta name="description" content="Olives preparados from Aleda, delivered around San Antonio, TX with no extra charge for delivery. 8oz $8, 16oz $16, with pickles $12 and $20. Message me to order.">
+<meta name="theme-color" content="#f5f7ee">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mae's Sour Cravings · Craving sour in San Antonio? I deliver.">
+<meta property="og:description" content="Olives preparados from Aleda. No extra charge for delivery. Message me to order.">
+<meta property="og:url" content="https://10elizabethbell.github.io/maeSourCravings/calm/">
+<meta property="og:image" content="https://10elizabethbell.github.io/maeSourCravings/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap"></noscript>
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  /* paper, two greens from the flyer's ground, one lime from the logo */
+  --paper:#f5f7ee;       /* page ground */
+  --card:#ffffff;
+  --field:#e7edd6;       /* inputs and steppers on the white card */
+  --ink:#10341f;         /* headings, text on lime */
+  --body:#2b4032;        /* running text on light */
+  --soft:#4c6152;        /* secondary text on light */
+  --green:#0f4a28;       /* hero, close */
+  --deep:#0a3019;        /* how it works, footer (line texture) */
+  --on-dark:#f5f8ee;
+  --on-dark-soft:#cfdcc9;
+  --lime:#b9e32e;        /* fills only; text on it is --ink */
+  --lime-2:#cdf04f;
+  --lime-ink:#4d6a00;    /* lime as text on light */
+  --line:rgba(16,52,31,.13);
+  --focus:#0f4a28;       /* form hover/focus outline, distinct from the lime fill */
+  --error:#b3261e;
+  --texture:repeating-linear-gradient(135deg,transparent 0 22px,rgba(255,255,255,.035) 22px 23px);
+  --display:"Cal Sans","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --text:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --r-card:24px;--r-field:10px;--pill:999px;
+  --gutter:20px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;background:var(--paper)}
+body{margin:0;font:16px/1.7 var(--text);color:var(--body);background:var(--paper)}
+::selection{background:var(--lime);color:var(--ink)}
+img,svg{display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.on-green :focus-visible,.on-deep :focus-visible,.hero :focus-visible,footer :focus-visible{outline-color:var(--lime)}
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 var(--gutter)}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:400;line-height:1.08;letter-spacing:-.005em;color:var(--ink);text-wrap:balance}
+h2{font-size:clamp(30px,7.6vw,48px)}
+p{margin:0}
+
+/* ---------- Bands ---------- */
+section{padding:64px 0}
+.on-paper{background:var(--paper)}
+.on-green{background:var(--green);color:var(--on-dark-soft)}
+.on-deep{background-color:var(--deep);background-image:var(--texture);color:var(--on-dark-soft)}
+.on-green h2,.on-deep h2{color:var(--on-dark)}
+.accent{color:var(--lime-ink)}
+.on-green .accent,.on-deep .accent,.hero .accent{color:var(--lime)}
+.head{display:grid;gap:16px;justify-items:start;max-width:640px}
+.lede{font-size:clamp(17px,4.6vw,19px);color:var(--soft);max-width:38ch}
+
+/* Eyebrow: a few key headings only. A label, not a button. */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font:500 14px/1 var(--text);letter-spacing:.02em;color:var(--ink);background:rgba(16,52,31,.07);padding:9px 14px;border-radius:var(--pill)}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--lime-ink)}
+.hero .eyebrow{color:var(--on-dark);background:rgba(255,255,255,.12)}
+.hero .eyebrow::before{background:var(--lime)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;border-radius:var(--pill);font:400 18px/1 var(--display);text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background-color .2s,color .2s,border-color .2s,transform .12s}
+.btn:active{transform:scale(.98)}
+.btn,.line-name,.field label,.cup-name,.steps b,.fb{letter-spacing:.01em;word-spacing:.06em}
+.btn svg{width:22px;height:22px;flex:none}
+.btn-primary{background:var(--lime);color:var(--ink);border-color:var(--lime)}
+.btn-ghost{background:transparent;color:var(--on-dark);border-color:rgba(245,248,238,.7)}
+
+/* ---------- Header ---------- */
+.top{background:var(--paper);color:var(--ink)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:68px;padding-top:max(8px,env(safe-area-inset-top));padding-bottom:8px}
+.brand{display:flex;align-items:center;gap:10px;min-height:44px;text-decoration:none}
+.brand img{width:52px;height:52px;flex:none}
+.brand b{font:400 19px/1.05 var(--display)}
+.place{font-size:15px;line-height:1.2;color:var(--soft);text-align:right;white-space:nowrap}
+
+/* ---------- Hero ---------- */
+.hero{padding:0;position:relative;background-color:var(--green);background-image:var(--texture);color:var(--on-dark);overflow:hidden}
+.hero-copy{position:relative;z-index:1;display:grid;gap:18px;justify-items:start;padding-top:36px;padding-bottom:8px}
+.hero h1{color:#fff;font-size:clamp(40px,11.4vw,76px);line-height:1.03;max-width:11ch}
+/* H1 bounce-in (after lpmr.co.uk): each letter slides in from 50px right with a slight overshoot, 20ms apart */
+.hero h1 .w{display:inline-block;white-space:nowrap}
+.hero h1 .c{display:inline-block;opacity:0;transform:translateX(50px);animation:letter-in 1s cubic-bezier(.34,1.56,.64,1) forwards;animation-delay:calc(var(--i) * 20ms)}
+@keyframes letter-in{to{opacity:1;transform:none}}
+.promise{font-size:clamp(17px,4.7vw,20px);line-height:1.5;color:var(--on-dark-soft);max-width:32ch}
+.promise b{color:var(--on-dark);font-weight:600}
+.actions{display:grid;gap:12px;width:100%;margin-top:2px}
+.hero-photo{width:100%;height:auto;aspect-ratio:7/4;object-fit:cover;object-position:50% 0;margin-top:-6px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 26%);mask-image:linear-gradient(to bottom,transparent 0,#000 26%)}
+
+/* ---------- Menu ---------- */
+.cups{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.cup{display:grid;grid-template-rows:auto 1fr;background:var(--card);border-radius:var(--r-card);overflow:hidden;text-decoration:none;color:var(--ink)}
+.cup img{width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.cup-text{display:grid;grid-template-columns:1fr auto;gap:4px 8px;align-items:end;padding:14px}
+.cup-name{grid-column:1/-1;font:400 clamp(17px,4.6vw,20px)/1.15 var(--display)}
+.cup-price{font:400 clamp(28px,8vw,34px)/1 var(--display)}
+.arrow{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(16,52,31,.08);color:var(--ink);transition:background-color .2s,color .2s}
+.arrow svg{width:18px;height:18px}
+.cup:hover,.cup:focus-visible,.fb:hover,.fb:focus-visible{outline:none;box-shadow:none}
+.cup:focus-visible .arrow,.fb:focus-visible .arrow{background:var(--lime);outline:3px solid var(--focus);outline-offset:3px}
+.fb{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:76px;padding:14px 16px 14px 22px;border-radius:20px;background:var(--card);color:var(--ink);text-decoration:none;font:400 clamp(18px,5vw,21px)/1.2 var(--display)}
+.fb .lbl{display:flex;align-items:center;gap:14px}
+.fb .lbl svg{width:30px;height:30px;flex:none;color:var(--green)}
+
+/* ---------- How to get some ---------- */
+.steps{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:24px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;counter-increment:s}
+.steps li::before{content:counter(s);width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--ink);font:400 20px/1 var(--display)}
+.steps b{display:block;font:400 21px/1.2 var(--display);color:var(--on-dark);margin-top:4px}
+.steps span{display:block;margin-top:4px}
+.ask-more{margin-top:32px;color:var(--on-dark)}
+
+/* ---------- Order form ---------- */
+.order .wrap{display:grid;gap:28px}
+.order-photo{display:none}
+form{background:var(--card);border-radius:var(--r-card);padding:clamp(20px,5vw,32px);display:grid;gap:20px;max-width:600px;width:100%}
+.lines{list-style:none;margin:0;padding:0;display:grid}
+.lines li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px 0}
+.lines li+li{border-top:1px solid var(--line)}
+.line-name{font:400 18px/1.2 var(--display);color:var(--ink)}
+.line-name small{display:block;font:400 15px/1.3 var(--text);color:var(--soft);margin-top:3px}
+.step{display:flex;align-items:center;gap:4px;flex:none}
+.step button{width:46px;height:46px;border-radius:50%;border:2px solid transparent;background:var(--field);color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0;transition:border-color .15s}
+.step button svg{width:16px;height:16px}
+.step button:disabled{opacity:.45;cursor:default}
+.step output{width:30px;text-align:center;font:400 20px/1 var(--display);color:var(--ink)}
+.total{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding-top:14px;border-top:2px solid var(--ink);font:400 22px/1.2 var(--display);color:var(--ink)}
+.total small{display:block;font:400 15px/1.3 var(--text);color:var(--soft);margin-top:3px}
+.total strong{font:400 34px/1 var(--display)}
+.field{display:grid;gap:8px;min-width:0}
+.field label{font:400 17px/1.2 var(--display);color:var(--ink)}
+.field small{font:400 14px/1 var(--text);color:var(--soft);margin-left:4px}
+input[type=text]{width:100%;font:16px/1.4 var(--text);color:var(--ink);background:var(--field);border:2px solid transparent;border-radius:var(--r-field);padding:13px 14px;min-height:52px;caret-color:var(--green);transition:border-color .15s}
+input::placeholder{color:var(--soft)}
+input[type=text]:focus{outline:none;border-color:var(--focus)}
+.err{font-size:15px;color:var(--error)}
+.field.bad input[type=text]{border-color:var(--error)}
+.field .err{display:none}
+.field.bad .err{display:block}
+form .btn-primary{width:100%}
+form .btn-primary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.after{font-size:15px;color:var(--soft)}
+.sent{display:grid;gap:10px;color:var(--ink)}
+.sent b{font-weight:600}
+.sent pre{margin:0;padding:12px 14px;background:var(--field);border-radius:var(--r-field);font:15px/1.5 var(--text);white-space:pre-wrap;user-select:all;-webkit-user-select:all}
+
+/* ---------- Close ---------- */
+.close img{width:150px;height:150px;margin-bottom:22px}
+.close .who{margin-top:14px;font-size:clamp(18px,5vw,20px);max-width:36ch}
+
+/* ---------- Footer ---------- */
+footer{background-color:var(--deep);background-image:var(--texture);color:var(--on-dark-soft);padding:40px 0 calc(96px + env(safe-area-inset-bottom));font-size:16px}
+footer .wrap{display:grid;gap:8px}
+footer a{display:inline-flex;align-items:center;min-height:44px;color:var(--on-dark);text-decoration:none;justify-self:start}
+
+/* ---------- Floating message circle (one circle, never a bottom bar) ---------- */
+.float{position:fixed;z-index:15;right:calc(16px + env(safe-area-inset-right));bottom:calc(16px + env(safe-area-inset-bottom));width:60px;height:60px;border-radius:50%;display:grid;place-items:center;background:var(--lime);color:var(--ink);box-shadow:0 10px 28px rgba(5,28,14,.32);transform:translateY(120px);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.float.on{transform:none}
+.float svg{width:28px;height:28px}
+.float:focus-visible{outline:3px solid #fff;outline-offset:2px;box-shadow:0 0 0 7px var(--ink);border-radius:50%}
+
+/* ---------- Motion: one fade-up, only for things below the first screen ---------- */
+.js .rise{transition:opacity .4s ease-out,transform .4s ease-out}
+.js .rise.below{opacity:0;transform:translateY(12px)}
+
+/* ---------- Bigger screens ---------- */
+@media (min-width:760px){
+  :root{--gutter:40px}
+  .brand b{font-size:22px}
+  section{padding:96px 0}
+  .cups{grid-template-columns:repeat(4,1fr);gap:16px}
+  .fb{max-width:520px}
+  .actions{grid-auto-flow:column;justify-content:start;width:auto}
+  .actions .btn{min-width:210px}
+  .hero-photo{max-height:440px}
+}
+@media (min-width:1024px){
+  .hero{min-height:600px;display:flex;align-items:center}
+  .hero-copy{padding-top:72px;padding-bottom:80px}
+  .hero-copy>*{max-width:46%}
+  .hero .actions{max-width:none}
+  .hero-photo{position:absolute;right:0;top:0;bottom:0;width:50%;height:100%;max-height:none;aspect-ratio:auto;object-position:60% 50%;margin:0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 12%);mask-image:linear-gradient(to right,transparent 0,#000 12%)}
+  .order .wrap{grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+  .order-photo{display:block;width:100%;height:auto;border-radius:var(--r-card);margin-top:12px}
+  .how .steps{grid-template-columns:repeat(3,1fr);gap:40px}
+  .steps b{font-size:22px}
+  .close .wrap{display:flex;align-items:center;gap:40px}
+  .close img{margin:0;width:180px;height:180px}
+}
+/* hover styles only where there is a real pointer, so taps don't leave them stuck on */
+@media (hover:hover){
+.btn-primary:hover{background:var(--lime-2);border-color:var(--lime-2)}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.cup:hover .arrow,.fb:hover .arrow{background:var(--lime);color:var(--ink)}
+input[type=text]:hover{border-color:var(--focus)}
+.step button:not(:disabled):hover{border-color:var(--focus)}
+form .btn-primary:hover{outline:2px solid var(--focus);outline-offset:2px}
+footer a:hover{color:var(--lime)}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .rise,.float,.btn{transition:none}
+  .js .rise.below{opacity:1;transform:none}
+  .hero h1 .c{animation:none;opacity:1;transform:none}
+}
+/* ---------- Pop-up before Messenger opens ---------- */
+.popup{width:min(420px,calc(100vw - 40px));border:0;border-radius:24px;padding:24px;background:#fff;color:var(--ink);box-shadow:0 24px 60px -16px rgba(5,28,14,.55)}
+.popup::backdrop{background:rgba(5,28,14,.6)}
+.popup p{font-size:20px;line-height:1.35;font-weight:600;margin:0 40px 20px 0}
+.popup-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;border-radius:50%;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0}
+.popup-x svg{width:20px;height:20px}
+.popup-x:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.popup .btn{width:100%}
+.popup .btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media (hover:hover){.popup-x:hover{background:var(--field)}}
+</style>
+</head>
+<body>
+<!--
+THESIS: A home food seller whose customers keep asking "where can I buy?" gets one page that answers it on the first screen and writes their order for them.
+OWN-WORLD: Off-white paper, the flyer's deep greens as bands (faint line texture), the logo's lime as the one accent, always a fill with deep green text. Her real cups do the appetite work. Cal Sans display, system body 16/1.7.
+STORY: See the olives, see it's San Antonio and delivered, see the four cups and prices, tap what you want, send it to Aleda on Messenger.
+FIRST VIEWPORT: Paper header with her logo. Green hero: eyebrow, "Craving sour in San Antonio? I deliver.", one promise, two pill buttons, her 16oz cup fading up out of the green.
+FORM: calm band system; order builder in place of a quote form because the job is order-taking; Messenger in place of text because she has no public phone.
+-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-msg" viewBox="0 0 24 24"><path d="M12 2.5C6.6 2.5 2.4 6.5 2.4 11.7c0 2.7 1.1 5 3 6.6.2.1.3.4.3.6l.1 1.7c0 .5.6.9 1.1.7l1.9-.8c.2-.1.3-.1.5-.1.8.2 1.7.3 2.6.3 5.4 0 9.6-4 9.6-9.2S17.400 2.500 12 2.500zm5.700 7.100-2.800 4.500c-.5.700-1.400.9-2.100.4l-2.200-1.700c-.2-.2-.5-.2-.7 0l-3 2.300c-.4.300-.9-.2-.7-.6l2.800-4.500c.5-.700 1.400-.9 2.100-.4l2.200 1.700c.2.200.5.200.7 0l3-2.300c.4-.3.900.2.700.6z" fill="currentColor"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M4 12h16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+</svg>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#" aria-label="Mae's Sour Cravings, back to top"><img src="../img/logo.webp" alt="" width="52" height="52"><b>Mae's Sour<br>Cravings</b></a>
+    <span class="place">San Antonio, TX</span>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" id="hero" aria-labelledby="h1">
+  <div class="wrap hero-copy">
+    <span class="eyebrow">Olives preparados</span>
+    <h1 id="h1">Craving sour in San Antonio? <span class="accent">I deliver.</span></h1>
+    <p class="promise">I'm <b>Aleda.</b> Tell me what you want and I'll bring it to you, with no extra charge for delivery.</p>
+    <div class="actions">
+      <a class="btn btn-primary" data-msg href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Message me to order</a>
+      <a class="btn btn-ghost" href="#menu">See the menu</a>
+    </div>
+  </div>
+  <img class="hero-photo" src="../img/hero.webp" alt="A 16oz cup of green olives in dark red sauce" width="1120" height="606" fetchpriority="high">
+</section>
+
+<section class="on-paper" id="menu" aria-labelledby="h-menu">
+  <div class="wrap">
+    <div class="head rise">
+      <h2 id="h-menu">Pick your cup</h2>
+      <p class="lede">A tasty, savory snack that goes with anything or by itself.</p>
+    </div>
+    <div class="cups">
+      <a class="cup rise" href="#order" data-add="a"><img src="../img/cup-8.webp" alt="8oz cup of olives in red sauce" width="380" height="254" loading="lazy"><span class="cup-text"><span class="cup-name">8oz</span><span class="cup-price">$8</span><span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></span></a>
+      <a class="cup rise" href="#order" data-add="b"><img src="../img/cup-16.webp" alt="16oz cup of olives in red sauce" width="452" height="305" loading="lazy"><span class="cup-text"><span class="cup-name">16oz</span><span class="cup-price">$16</span><span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></span></a>
+      <a class="cup rise" href="#order" data-add="c"><img src="../img/pickle-8.webp" alt="8oz cup of olives with pickles" width="400" height="268" loading="lazy"><span class="cup-text"><span class="cup-name">8oz with pickles</span><span class="cup-price">$12</span><span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></span></a>
+      <a class="cup rise" href="#order" data-add="d"><img src="../img/pickle-16.webp" alt="16oz cup of olives with pickles" width="465" height="310" loading="lazy"><span class="cup-text"><span class="cup-name">16oz with pickles</span><span class="cup-price">$20</span><span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span></span></a>
+    </div>
+    <a class="fb rise" href="https://facebook.com/elita.gonzalez.9" rel="noopener">
+      <span class="lbl"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12a12 12 0 1 0-13.9 11.9v-8.4h-3V12h3V9.4c0-3 1.800-4.700 4.500-4.700 1.300 0 2.700.2 2.700.2v2.900h-1.500c-1.500 0-2 .9-2 1.900V12h3.400l-.5 3.500h-2.900v8.400A12 12 0 0 0 24 12z"/></svg>Click to see more on my Facebook</span>
+      <span class="arrow" aria-hidden="true"><svg><use href="#i-arrow"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<section class="on-deep how" aria-labelledby="h-how">
+  <div class="wrap">
+    <h2 id="h-how" class="rise">How to <span class="accent">get some.</span></h2>
+    <ol class="steps">
+      <li class="rise"><div><b>Message me your order.</b><span>Which cups, and how many.</span></div></li>
+      <li class="rise"><div><b>Tell me where you are.</b><span>San Antonio and surrounding areas.</span></div></li>
+      <li class="rise"><div><b>I bring it to you.</b><span>There's no extra charge for delivery.</span></div></li>
+    </ol>
+    <p class="ask-more rise">Want to pick up, or need them shipped? Ask me in your message.</p>
+  </div>
+</section>
+
+<section class="on-paper order" id="order" aria-labelledby="h-order">
+  <div class="wrap">
+    <div class="head rise">
+      <span class="eyebrow">No extra charge for delivery</span>
+      <h2 id="h-order">Write your order</h2>
+      <p class="lede">Add up your cups and I'll get it all in one message.</p>
+      <img class="order-photo" src="../img/pickle-16.webp" alt="16oz cup of olives with pickles" width="465" height="310" loading="lazy">
+    </div>
+    <form id="orderForm" class="rise" novalidate>
+      <ul class="lines" id="lines">
+        <li data-id="a" data-name="8oz" data-price="8"><span class="line-name">8oz<small>$8</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 8oz" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 8oz"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+        <li data-id="b" data-name="16oz" data-price="16"><span class="line-name">16oz<small>$16</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 16oz" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 16oz"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+        <li data-id="c" data-name="8oz with pickles" data-price="12"><span class="line-name">8oz with pickles<small>$12</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 8oz with pickles" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 8oz with pickles"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+        <li data-id="d" data-name="16oz with pickles" data-price="20"><span class="line-name">16oz with pickles<small>$20</small></span><span class="step"><button type="button" data-dir="-1" aria-label="One less 16oz with pickles" disabled><svg aria-hidden="true"><use href="#i-minus"/></svg></button><output aria-live="polite">0</output><button type="button" data-dir="1" aria-label="One more 16oz with pickles"><svg aria-hidden="true"><use href="#i-plus"/></svg></button></span></li>
+      </ul>
+      <div class="total"><span>Total<small>Delivery included</small></span><strong id="total">$0</strong></div>
+      <p class="err" id="e-lines" role="alert" hidden>Add at least one cup so I know what to bring.</p>
+      <div class="field" id="f-name">
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" autocomplete="given-name" maxlength="60" placeholder="First name is fine" aria-describedby="e-name">
+        <p class="err" id="e-name">Add your name so I know who's ordering.</p>
+      </div>
+      <div class="field" id="f-where">
+        <label for="where">Your part of town</label>
+        <input type="text" id="where" name="where" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stone Oak" aria-describedby="e-where">
+        <p class="err" id="e-where">Add your part of town so I know where to bring it.</p>
+      </div>
+      <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send the message</button>
+      <div class="sent" id="sent" role="status" hidden>
+        <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
+        <pre id="sentText"></pre>
+        <a class="btn btn-primary" id="sentLink" href="https://m.me/elita.gonzalez.9"><svg aria-hidden="true"><use href="#i-msg"/></svg>Open Messenger</a>
+      </div>
+      <p class="after" id="after">Opens Messenger so you can send it to me.</p>
+    </form>
+  </div>
+</section>
+
+<section class="on-green close" aria-labelledby="h-close">
+  <div class="wrap">
+    <img class="rise" src="../img/logo.webp" alt="" width="180" height="180" loading="lazy">
+    <div class="rise">
+      <h2 id="h-close">Mae's Sour Cravings</h2>
+      <p class="who">Olives preparados from Aleda, brought to you around San Antonio, TX and surrounding areas.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Mae's Sour Cravings · Aleda Gonzalez · San Antonio, TX</span>
+    <a href="https://facebook.com/elita.gonzalez.9" rel="noopener">Facebook</a>
+  </div>
+</footer>
+
+<a class="float" id="float" data-msg href="https://m.me/elita.gonzalez.9" aria-label="Message Aleda on Messenger"><svg aria-hidden="true"><use href="#i-msg"/></svg></a>
+
+<dialog class="popup" id="popup" aria-labelledby="popupText">
+  <button class="popup-x" id="popupClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
+  <p id="popupText">Order copied! Paste it in Messenger</p>
+  <button class="btn btn-primary" id="popupGo" type="button" autofocus><svg aria-hidden="true"><use href="#i-msg"/></svg>Go to messenger</button>
+</dialog>
+
+<script>
+/* ===== Config ===== */
+var CONFIG = {
+  FLOAT: true,                                  // the floating message circle; false removes it
+  MESSENGER: 'https://m.me/elita.gonzalez.9'    // every order and message button goes here
+};
+document.documentElement.classList.add('js');
+
+/* ===== Hero H1 bounce-in: split into letters (JS only, so no-JS and reduced motion keep the plain heading) ===== */
+(function(){
+  var h=document.getElementById('h1');
+  if(!h||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var plain=h.innerHTML,i=0,last=null;
+  h.setAttribute('aria-label',h.textContent.replace(/\s+/g,' ').trim());
+  function split(node,into){
+    [].slice.call(node.childNodes).forEach(function(n){
+      if(n.nodeType===3){
+        n.textContent.split(/(\s+)/).forEach(function(part){
+          if(!part)return;
+          if(/^\s+$/.test(part)){into.appendChild(document.createTextNode(' '));return}
+          var w=document.createElement('span');w.className='w';w.setAttribute('aria-hidden','true');
+          for(var k=0;k<part.length;k++){var c=document.createElement('span');c.className='c';c.style.setProperty('--i',i++);c.textContent=part[k];w.appendChild(c);last=c}
+          into.appendChild(w);
+        });
+      }else if(n.nodeType===1){var copy=n.cloneNode(false);split(n,copy);into.appendChild(copy)}
+    });
+  }
+  var frag=document.createDocumentFragment();split(h,frag);h.textContent='';h.appendChild(frag);
+  // once the last letter lands, put the plain heading back so kerning and text selection return
+  if(last)last.addEventListener('animationend',function(){h.innerHTML=plain;h.removeAttribute('aria-label')});
+})();
+
+/* ===== Order builder: adds up the cups, writes the message, hands it to Messenger ===== */
+(function(){
+  var form=document.getElementById('orderForm');if(!form)return;
+  var KEY='maes-order';
+  var rows=[].slice.call(form.querySelectorAll('#lines li')),counts={};
+  var $=function(id){return document.getElementById(id)};
+  rows.forEach(function(r){counts[r.dataset.id]=0});
+  // Facebook's browser can reload a page after you leave it, so the order survives that
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value}))}catch(e){}}
+  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||''}}catch(e){}}
+  function stale(){$('sent').hidden=true;$('after').hidden=false}
+  function render(){
+    var sum=0;
+    rows.forEach(function(r){
+      var n=counts[r.dataset.id];sum+=n*Number(r.dataset.price);
+      r.querySelector('output').textContent=n;
+      r.querySelector('[data-dir="-1"]').disabled=n===0;
+    });
+    $('total').textContent='$'+sum;
+    if(sum)$('e-lines').hidden=true;
+  }
+  form.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-dir]');if(!b)return;
+    var id=b.closest('li').dataset.id;
+    counts[id]=Math.max(0,Math.min(99,counts[id]+Number(b.dataset.dir)));render();stale();save();
+  });
+  // tapping a cup in the menu puts one in the order, then the link scrolls down to it
+  [].forEach.call(document.querySelectorAll('[data-add]'),function(a){
+    a.addEventListener('click',function(){counts[a.dataset.add]=Math.min(99,counts[a.dataset.add]+1);render();stale();save()});
+  });
+  form.addEventListener('input',function(e){
+    var f=e.target.closest('.field');
+    if(f&&e.target.value.trim())f.classList.remove('bad');
+    stale();save();
+  });
+  function copy(text,done){
+    // must start inside the tap; Facebook's browser may refuse both of these
+    var ok=false,pre=$('sentText');
+    try{
+      var range=document.createRange();range.selectNodeContents(pre);
+      var sel=getSelection();sel.removeAllRanges();sel.addRange(range);
+      ok=document.execCommand('copy');sel.removeAllRanges();
+    }catch(e){}
+    if(ok){done(true);return}
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});
+    }else done(false);
+  }
+  // stays up until they tap Go to messenger or the X
+  function popup(){
+    var d=$('popup');
+    function go(){if(d.open)d.close();location.href=CONFIG.MESSENGER}
+    if(!d.showModal){go();return}
+    $('popupGo').onclick=go;
+    $('popupClose').onclick=function(){d.close()};
+    d.showModal();
+  }
+  function tell(copied){
+    $('sentLead').textContent=copied?'Your order is copied.':'Your order is written.';
+    $('sentHow').textContent=copied?'Paste it in our chat on Messenger.':'Press and hold it below to copy it, then open Messenger and paste it in our chat.';
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('name').value.trim(),where=$('where').value.trim();
+    var items=rows.filter(function(r){return counts[r.dataset.id]>0});
+    var noItems=!items.length;
+    $('e-lines').hidden=!noItems;
+    $('f-name').classList.toggle('bad',!name);
+    $('f-where').classList.toggle('bad',!where);
+    $('name').setAttribute('aria-invalid',name?'false':'true');
+    $('where').setAttribute('aria-invalid',where?'false':'true');
+    if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
+    if(!name){$('name').focus();return}
+    if(!where){$('where').focus();return}
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+'\nI\'m in: '+where;
+    $('sentText').textContent=msg;
+    $('sent').hidden=false;$('after').hidden=true;
+    // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
+    copy(msg,function(ok){
+      tell(ok);
+      if(ok)popup();
+      else{$('sentLink').focus({preventScroll:true});$('sent').scrollIntoView({block:'nearest',behavior:'smooth'})}
+    });
+  });
+  restore();render();
+})();
+
+/* ===== Floating message circle: shows after the hero, hides while the form is on screen ===== */
+(function(){
+  var fl=document.getElementById('float');if(!fl)return;
+  if(!CONFIG.FLOAT||!('IntersectionObserver' in window)){fl.remove();return}
+  var pastHero=false,formIn=false;
+  function sync(){var on=pastHero&&!formIn;fl.classList.toggle('on',on);fl.tabIndex=on?0:-1;fl.setAttribute('aria-hidden',on?'false':'true')}
+  new IntersectionObserver(function(es){pastHero=!es[0].isIntersecting;sync()},{threshold:.15}).observe(document.getElementById('hero'));
+  new IntersectionObserver(function(es){formIn=es[0].isIntersecting;sync()},{rootMargin:'-15% 0px -15% 0px'}).observe(document.getElementById('orderForm'));
+  sync();
+})();
+
+/* ===== Fade-up: everything is visible at rest; only what starts below the first screen rises 12px in ===== */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('below');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  [].forEach.call(document.querySelectorAll('.rise'),function(el){if(el.getBoundingClientRect().top>innerHeight){el.classList.add('below');io.observe(el)}});
+})();
+</script>
+</body>
+</html>

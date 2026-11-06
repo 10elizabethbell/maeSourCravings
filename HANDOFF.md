@@ -1,17 +1,17 @@
 # Mae's Sour Cravings — handoff at ~60%
 
-**Live (calm):** https://10elizabethbell.github.io/maeSourCravings/
-**Live (interactive):** https://10elizabethbell.github.io/maeSourCravings/interactive/
+**Live:** https://10elizabethbell.github.io/maeSourCravings/ (interactive version, the owner's pick)
+**Calm version (kept, not linked):** https://10elizabethbell.github.io/maeSourCravings/calm/
 **Repo:** https://github.com/10elizabethbell/maeSourCravings · **Built:** 2026-11-01 from Muse brief 2026-11-01
 
-Ellie asked mid-build for two versions: the current calm style and the older interactive style. Only the calm URL is on the Call Sheet, because the sheet holds one `site` per prospect.
+Ellie asked mid-build for two versions: the current calm style and the older interactive style. On 2026-11-05 the owner chose the interactive one, so it moved to the main URL (the one on the Call Sheet) and the calm one moved to `/calm/`. Delete `calm/` once she's sure.
 
 ## What's built
 - **Both:** header, hero ("Craving sour in San Antonio? I deliver."), four cups with published prices, Facebook link under them, how to get some, order builder, close, footer. Tapping a cup adds one to the order and jumps to the builder.
 - **Order builder:** steppers, running total, name and part of town. "Send the message" copies the order and shows a pop-up ("Order copied! Paste it in Messenger"). It stays up until they tap "Go to messenger" or the X. Tapping the X leaves them on the page with the order and an Open Messenger button. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
-- **Calm (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
-- **Interactive (`interactive/index.html`):** a pool of red sauce, olives and lime along the hero's bottom. It stirs itself until touched. A finger or mouse pushes olives, ripples the surface, and a flick launches olives that plop back with a splash. Her cup rides the surface in a round frame. Animated seams between sections, round cups that bob, system-stack uppercase headings. Tunables are in `CONFIG`.
+- **Calm (`calm/index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
+- **Interactive (`index.html`, live):** a pool of red sauce, olives and lime along the hero's bottom. It stirs itself until touched. A finger or mouse pushes olives, ripples the surface, and a flick launches olives that plop back with a splash. Her cup rides the surface in a round frame. Animated seams between sections, round cups that bob, system-stack uppercase headings. Tunables are in `CONFIG`.
 - **Contact:** Messenger only (`m.me/elita.gonzalez.9`), because that's how she takes orders and no phone is known.
 
 ## Assumptions I made

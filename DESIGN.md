@@ -158,7 +158,7 @@ components:
 
 # Design System: Mae's Sour Cravings
 
-Two shipped pages share this system. `index.html` is the calm band version and the default; every section below describes it unless it says otherwise. `interactive/index.html` keeps the same palette, images, copy structure and order builder, and differs as listed in **Interactive Version** at the end. The frontmatter tokens hold for the calm version, and the interactive version uses the color, spacing and radius values that the differences section does not change.
+Two shipped pages share this system. `calm/index.html` is the calm band version; every section below describes it unless it says otherwise. `index.html` is the interactive version, which the owner chose on 2026-11-05 and which is the live default. It keeps the same palette, images, copy structure and order builder, and differs as listed in **Interactive Version** at the end. The frontmatter tokens hold for the calm version, and the interactive version uses the color, spacing and radius values that the differences section does not change.
 
 ## Overview
 
@@ -334,7 +334,7 @@ Elements that start below the first screen fade in and rise 12px over .4s ease-o
 
 ## Interactive Version
 
-`interactive/index.html` shares the color values, the six images, the page sequence, the button geometry, the order builder and the icon set. Everything below replaces the matching description above for this page only. Its direction note: "You came for sour. The first thing you get to do is stir it."
+`index.html` (the live page) shares the color values, the six images, the page sequence, the button geometry, the order builder and the icon set. Everything below replaces the matching description above for this page only. Its direction note: "You came for sour. The first thing you get to do is stir it."
 
 ### Removed
 No Cal Sans or web font request, no line texture, no heading letter animation, no fade-up, no message circle, no white cup cards, and no darker-lime token.
