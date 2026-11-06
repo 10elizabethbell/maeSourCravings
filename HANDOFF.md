@@ -11,6 +11,7 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 - **Sections:** header, hero ("Craving sour in San Antonio? I deliver."), four cups with published prices, Facebook link under them, how to get some, order builder, close, footer. Tapping a cup adds one to the order and jumps to the builder.
 - **Order builder:** steppers, running total, name and address. "Send the message" copies the order and shows a pop-up ("Order copied! Paste it in Messenger"). It stays up until they tap "Go to messenger" or the X. Tapping the X leaves them on the page with the order and an Open Messenger button. If copying fails, the page stays put and shows the order to press and hold. Orders survive a reload.
 - **Delivery or pickup:** required choice. Delivery asks for a day (the next 8 days as pills, from `CONFIG.DAYS_AHEAD`, San Antonio time) and the address; the message says "Delivery on: Sunday, Nov 8 (3pm to 10pm)". Pickup asks where they are now and says a meetup spot will follow. No time is ever asked for, per the owner.
+- **Payment (required):** Cash App, Zelle or Cash. The message ends "Paying with: Cash App" and the sheet has a Payment column. Her Cash App tag and Zelle number aren't on the page (not known); she sends them in the chat.
 - **Daily order caps (owner request 2026-11-06):** 6 deliveries per weekday, 20 per weekend day. Orders log to a Google Sheet through an Apps Script web app (`backend/orders.gs`, setup in `backend/SETUP.md`); full days show as "Full" and can't be picked, and the script refuses an order for a day that filled meanwhile. Pickup is logged but not counted. Off until `CONFIG.ORDERS_API` is set. If Google can't be reached, every day stays open.
 - **Palette:** paper #f5f7ee, greens #0f4a28 and #0a3019 from the flyer's ground, lime #b9e32e from the logo. Lime is a fill with deep green text.
 - **Look (`index.html`):** Cal Sans, eyebrow pills, H1 bounce-in, fade-up, floating Messenger circle. Hero is her 16oz cup from the flyer fading out of the green, with no navy overlay.
@@ -38,7 +39,8 @@ Domain `maesolivespreparados.com` bought 2026-11-05 at GoDaddy. DNS: `A @` recor
 5. What's in the sauce, and what are the dark chunks? Can the page name chamoy or similar?
 6. Is the business licensed or permitted? (The brief flags this as unknown. Worth knowing before promoting it.)
 7. Real photos of the cups?
-8. Does she watch Message Requests? Orders from strangers land there, not in her main inbox.
+8. Her Cash App $tag and Zelle number or email, if she wants them shown after ordering?
+9. Does she watch Message Requests? Orders from strangers land there, not in her main inbox.
 
 ## Ideas not built (yours to pick)
 - **Impeccable findings left in on purpose (your choices):** eyebrow pills, stripe texture and letter bounce-in. The detector's "gray on color" warning for #cfdcc9 on green was also left: it's a green-tinted light colour with strong contrast.

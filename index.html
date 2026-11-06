@@ -158,6 +158,8 @@ input[type=text]:focus{outline:none;border-color:var(--focus)}
 .choice{border:0;margin:0;padding:0;min-width:0;display:grid;gap:8px}
 .choice legend{padding:0;margin-bottom:8px;font:400 17px/1.2 var(--display);color:var(--ink);letter-spacing:.01em;word-spacing:.06em}
 .opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opts.three{grid-template-columns:repeat(3,1fr);gap:8px}
+.opts.three .opt{padding:0 4px;font-size:16px;white-space:nowrap}
 .opt{position:relative;display:grid;place-items:center;min-height:52px;padding:0 12px;border-radius:var(--pill);background:var(--field);border:2px solid transparent;font:400 18px/1 var(--display);letter-spacing:.01em;color:var(--ink);cursor:pointer;transition:background-color .15s,border-color .15s}
 .opt input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
 .opt:has(input:checked){background:var(--lime);border-color:var(--lime)}
@@ -357,6 +359,15 @@ FORM: calm band system; order builder in place of a quote form because the job i
         <p class="note" id="whereNote" hidden>I'll message you a meetup spot near you.</p>
         <p class="err" id="e-where">Add your address so I know where to bring it.</p>
       </div>
+      <fieldset class="field choice" id="f-pay" aria-describedby="e-pay">
+        <legend>How will you pay?</legend>
+        <div class="opts three">
+          <label class="opt"><input type="radio" name="pay" value="Cash App">Cash App</label>
+          <label class="opt"><input type="radio" name="pay" value="Zelle">Zelle</label>
+          <label class="opt"><input type="radio" name="pay" value="Cash">Cash</label>
+        </div>
+        <p class="err" id="e-pay">Choose how you'll pay.</p>
+      </fieldset>
       <button class="btn btn-primary" type="submit"><svg aria-hidden="true"><use href="#i-msg"/></svg>Send the message</button>
       <div class="sent" id="sent" role="status" hidden>
         <p><b id="sentLead">Your order is written.</b> <span id="sentHow"></span></p>
@@ -439,8 +450,9 @@ document.documentElement.classList.add('js');
   rows.forEach(function(r){counts[r.dataset.id]=0});
   // Facebook's browser can reload a page after you leave it, so the order survives that
   var orderId='';
-  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value,h:how(),d:day()?day().value:'',i:orderId}))}catch(e){}}
-  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||'';var r=form.querySelector('input[name=how][value="'+s.h+'"]');if(r)r.checked=true;var dr=s.d&&form.querySelector('input[name=day][value="'+s.d+'"]');if(dr)dr.checked=true;orderId=s.i||''}}catch(e){}}
+  function save(){try{sessionStorage.setItem(KEY,JSON.stringify({c:counts,n:$('name').value,w:$('where').value,h:how(),d:day()?day().value:'',p:pay(),i:orderId}))}catch(e){}}
+  function restore(){try{var s=JSON.parse(sessionStorage.getItem(KEY)||'null');if(s){for(var k in s.c)if(k in counts)counts[k]=s.c[k];$('name').value=s.n||'';$('where').value=s.w||'';var r=form.querySelector('input[name=how][value="'+s.h+'"]');if(r)r.checked=true;var dr=s.d&&form.querySelector('input[name=day][value="'+s.d+'"]');if(dr)dr.checked=true;orderId=s.i||'';var pr=s.p&&form.querySelector('input[name=pay][value="'+s.p+'"]');if(pr)pr.checked=true}}catch(e){}}
+  function pay(){var r=form.querySelector('input[name=pay]:checked');return r?r.value:''}
   function day(){var r=form.querySelector('input[name=day]:checked');return r||null}
   // the next few delivery days in San Antonio time, as radio pills
   function days(){
@@ -517,6 +529,7 @@ document.documentElement.classList.add('js');
   form.addEventListener('input',function(e){
     var f=e.target.closest('.field');
     if(e.target.name==='how'){$('f-how').classList.remove('bad');mode()}
+    else if(e.target.name==='pay')$('f-pay').classList.remove('bad');
     else if(e.target.name==='day'){$('f-day').classList.remove('bad');$('e-day').textContent='Choose a day for delivery.'}
     else if(f&&e.target.value.trim())f.classList.remove('bad');
     stale();save();
@@ -551,7 +564,7 @@ document.documentElement.classList.add('js');
   }
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=$('name').value.trim(),where=$('where').value.trim(),h=how(),dy=h==='delivery'?day():null;
+    var name=$('name').value.trim(),where=$('where').value.trim(),h=how(),dy=h==='delivery'?day():null,py=pay();
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
     var noItems=!items.length;
     $('e-lines').hidden=!noItems;
@@ -559,6 +572,7 @@ document.documentElement.classList.add('js');
     $('f-how').classList.toggle('bad',!h);
     $('f-day').classList.toggle('bad',h==='delivery'&&!dy);
     $('f-where').classList.toggle('bad',!where);
+    $('f-pay').classList.toggle('bad',!py);
     $('name').setAttribute('aria-invalid',name?'false':'true');
     $('where').setAttribute('aria-invalid',where?'false':'true');
     if(noItems){$('lines').querySelector('[data-dir="1"]').focus();return}
@@ -566,11 +580,12 @@ document.documentElement.classList.add('js');
     if(!h){form.querySelector('input[name=how]').focus();return}
     if(h==='delivery'&&!dy){var fd=form.querySelector('input[name=day]');if(fd)fd.focus();return}
     if(!where){$('where').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.':'\nDelivery on: '+dy.dataset.label+'\nDelivery to: '+where);
+    if(!py){form.querySelector('input[name=pay]').focus();return}
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.':'\nDelivery on: '+dy.dataset.label+'\nDelivery to: '+where)+'\nPaying with: '+py;
     $('sentText').textContent=msg;
     $('sent').hidden=false;$('after').hidden=true;
     if(!orderId){orderId=Date.now().toString(36)+Math.random().toString(36).slice(2,8);save()}
-    var order={id:orderId,type:h,day:dy?dy.value:'',name:name,where:where,total:$('total').textContent,
+    var order={id:orderId,type:h,day:dy?dy.value:'',name:name,where:where,total:$('total').textContent,pay:py,
       items:items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join(', ')};
     // one tap: copy the order and go straight to Messenger; if copying fails, stay here and show how
     copy(msg,function(ok){

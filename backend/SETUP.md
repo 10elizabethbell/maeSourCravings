@@ -24,7 +24,7 @@ needs to stay on.
 ## Day to day (for Mae)
 
 - Each order sent from the site is a row: when, delivery day, weekday, delivery or
-  pickup, name, address, items, total, order ID.
+  pickup, name, address, items, total, payment (Cash App, Zelle or Cash), order ID.
 - **Cancelled or never sent?** Delete the row; that spot opens again right away.
 - **Order that came in another way?** Add a row with the **Day** (e.g. `2026-11-08`)
   and **Type** `delivery`; it counts toward that day.

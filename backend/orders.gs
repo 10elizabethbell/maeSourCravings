@@ -13,8 +13,9 @@ var CAP_WEEKDAY = 6;    // Monday to Friday
 var CAP_WEEKEND = 20;   // Saturday and Sunday
 var TZ = 'America/Chicago';
 var SHEET = 'Orders';
-var HEAD = ['Received', 'Day', 'Weekday', 'Type', 'Name', 'Address', 'Items', 'Total', 'Order ID'];
-var COL_DAY = 2, COL_TYPE = 4, COL_ID = 9;
+var HEAD = ['Received', 'Day', 'Weekday', 'Type', 'Name', 'Address', 'Items', 'Total', 'Payment', 'Order ID'];
+var COL_DAY = 2, COL_TYPE = 4, COL_ID = 10;
+var PAYMENTS = ['Cash App', 'Zelle', 'Cash'];
 
 // Run once from the editor (select "setup", press Run) to create the sheet's header.
 function setup() { sheet_(); }
@@ -29,7 +30,8 @@ function doPost(e) {
   var type = o.type === 'pickup' ? 'pickup' : o.type === 'delivery' ? 'delivery' : '';
   var day = String(o.day || '');
   var id = clip_(o.id, 40);
-  if (!type || !id) return json_({ ok: false, error: 'bad request' });
+  var pay = PAYMENTS.indexOf(o.pay) > -1 ? o.pay : '';
+  if (!type || !id || !pay) return json_({ ok: false, error: 'bad request' });
   if (type === 'delivery' && !validDay_(day)) return json_({ ok: false, error: 'bad day' });
 
   var lock = LockService.getScriptLock();
@@ -52,6 +54,7 @@ function doPost(e) {
       safe_(clip_(o.where, 120)),
       safe_(clip_(o.items, 500)),
       safe_(clip_(o.total, 12)),
+      pay,
       id
     ]);
     rows.push([null, d, null, type]);
