@@ -390,7 +390,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
 <dialog class="popup" id="popup" aria-labelledby="popupText">
   <button class="popup-x" id="popupClose" type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button>
   <p id="popupText">Order copied! Paste it in Messenger</p>
-  <button class="btn btn-primary" id="popupGo" type="button" autofocus><svg aria-hidden="true"><use href="#i-msg"/></svg>Go to messenger</button>
+  <a class="btn btn-primary" id="popupGo" href="https://m.me/61596070413692" autofocus><svg aria-hidden="true"><use href="#i-msg"/></svg>Go to messenger</a>
 </dialog>
 
 <script>
@@ -508,7 +508,9 @@ document.documentElement.classList.add('js');
     var d=$('popup');
     function go(){if(d.open)d.close();location.href=CONFIG.MESSENGER}
     if(!d.showModal){go();return}
-    $('popupGo').onclick=go;
+    // a real link, not script navigation: iPhones only hand m.me to the Messenger app from a tapped link
+    $('popupGo').href=CONFIG.MESSENGER;
+    $('popupGo').onclick=function(){d.close()};
     $('popupClose').onclick=function(){d.close()};
     d.showModal();
   }
