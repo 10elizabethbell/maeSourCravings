@@ -117,6 +117,12 @@ section{padding:64px 0}
 .cup-price{font:400 clamp(28px,8vw,34px)/1 var(--display)}
 .arrow{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(16,52,31,.08);color:var(--ink);transition:background-color .2s,color .2s}
 .arrow svg{width:18px;height:18px}
+/* sold out (CONFIG.SOLD_OUT): greyed card, no arrow, a badge instead of a link */
+.cup.out{position:relative;cursor:default}
+.cup.out img{filter:grayscale(1);opacity:.5}
+.cup.out .arrow{display:none}
+.sold{position:absolute;left:12px;top:12px;background:var(--ink);color:#fff;font:600 14px/1 var(--text);letter-spacing:.04em;padding:8px 12px;border-radius:999px}
+.lines li.out .line-name{color:var(--soft)}
 .cup:hover,.cup:focus-visible,.fb:hover,.fb:focus-visible{outline:none;box-shadow:none}
 .cup:focus-visible .arrow,.fb:focus-visible .arrow{background:var(--lime);outline:3px solid var(--focus);outline-offset:3px}
 .fb{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:76px;padding:14px 16px 14px 22px;border-radius:20px;background:var(--card);color:var(--ink);text-decoration:none;font:400 clamp(18px,5vw,21px)/1.2 var(--display)}
@@ -398,7 +404,8 @@ var CONFIG = {
   PHONE: '+12106380378',                        // every order and text button texts this number
   DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
   SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
-  ORDERS_API: ''                                // Apps Script web app URL (backend/SETUP.md); empty turns off the order log and daily caps
+  ORDERS_API: '',                               // Apps Script web app URL (backend/SETUP.md); empty turns off the order log and daily caps
+  SOLD_OUT: ['a','c']                           // sizes that can't be ordered: a 8oz, b 16oz, c 8oz with pickles, d 16oz with pickles; [] when all are back
 };
 document.documentElement.classList.add('js');
 
@@ -508,7 +515,7 @@ document.documentElement.classList.add('js');
   });
   // tapping a cup in the menu puts one in the order, then the link scrolls down to it
   [].forEach.call(document.querySelectorAll('[data-add]'),function(a){
-    a.addEventListener('click',function(){counts[a.dataset.add]=Math.min(99,counts[a.dataset.add]+1);render();stale();save()});
+    a.addEventListener('click',function(){if(a.classList.contains('out'))return;counts[a.dataset.add]=Math.min(99,counts[a.dataset.add]+1);render();stale();save()});
   });
   form.addEventListener('input',function(e){
     var f=e.target.closest('.field');
@@ -550,7 +557,20 @@ document.documentElement.classList.add('js');
     var link=smsLink(msg);$('sentLink').href=link;
     location.href=link;
   });
-  days();restore();mode();render();loadFull();
+  // sold-out sizes: the menu card stops being a link and the order line can't be added to
+  function soldOut(){
+    (CONFIG.SOLD_OUT||[]).forEach(function(id){
+      counts[id]=0;
+      var r=form.querySelector('#lines li[data-id="'+id+'"]');
+      if(r){r.classList.add('out');r.querySelector('small').textContent='Sold out';[].forEach.call(r.querySelectorAll('button'),function(b){b.disabled=true})}
+      [].forEach.call(document.querySelectorAll('.cup[data-add="'+id+'"]'),function(c){
+        c.classList.add('out');c.removeAttribute('href');c.setAttribute('aria-disabled','true');
+        var t=document.createElement('span');t.className='sold';t.textContent='Sold out';c.appendChild(t);
+        var pr=c.querySelector('.cup-price');if(pr)pr.setAttribute('aria-label',pr.textContent+', sold out');
+      });
+    });
+  }
+  days();restore();soldOut();mode();render();save();loadFull();
 })();
 
 /* ===== Floating message circle: shows after the hero, hides while the form is on screen ===== */
