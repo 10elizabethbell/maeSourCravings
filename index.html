@@ -413,7 +413,7 @@ var CONFIG = {
   DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
   SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
   ORDERS_API: '',                               // Apps Script web app URL (backend/SETUP.md); empty turns off the order log and daily caps
-  PICKUP_ONLY: { DATE: '2026-11-20', ADDRESS: '' }, // on DATE (San Antonio time) delivery is off and orders are pickup at ADDRESS; normal again the next day by itself
+  PICKUP_ONLY: { DATE: '2026-11-20', ADDRESS: '' }, // on DATE (San Antonio time) that day can't be picked for delivery (later days can) and pickup is at ADDRESS; normal again the next day by itself
   SOLD_OUT: []                                  // sizes that can't be ordered: a 8oz, b 16oz, c 8oz with pickles, d 16oz with pickles; [] when all are back
 };
 document.documentElement.classList.add('js');
@@ -460,7 +460,7 @@ document.documentElement.classList.add('js');
     var p={};new Intl.DateTimeFormat('en-US',{timeZone:'America/Chicago',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',hourCycle:'h23'}).formatToParts(new Date()).forEach(function(x){p[x.type]=x.value});
     var start=Date.UTC(+p.year,+p.month-1,+p.day),html='';
     for(var i=0,n=0;n<CONFIG.DAYS_AHEAD;i++){
-      if(i===0&&+p.hour>=CONFIG.SAME_DAY_UNTIL)continue;
+      if(i===0&&(PICK||+p.hour>=CONFIG.SAME_DAY_UNTIL))continue;
       var d=new Date(start+i*864e5);
       var f=function(o){return d.toLocaleDateString('en-US',Object.assign({timeZone:'UTC'},o))};
       var label=f({weekday:'long',month:'short',day:'numeric'});
@@ -473,7 +473,7 @@ document.documentElement.classList.add('js');
   // pickup still asks where they are, so Aleda can pick a meetup spot near them
   function mode(){
     var p=how()==='pickup';
-    $('f-where').hidden=!!(PICK&&PICK.ADDRESS);
+    $('f-where').hidden=!!(p&&PICK&&PICK.ADDRESS);
     $('whereLabel').textContent=p?'Where you are right now':'Your address';
     $('whereNote').hidden=!p;
     $('f-day').hidden=how()!=='delivery';
@@ -539,7 +539,7 @@ document.documentElement.classList.add('js');
   function smsLink(text){return 'sms:'+CONFIG.PHONE+'?&body='+encodeURIComponent(text)}
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=$('name').value.trim(),where=PICK&&PICK.ADDRESS?PICK.ADDRESS:$('where').value.trim(),h=how(),dy=h==='delivery'?day():null,py=pay();
+    var name=$('name').value.trim(),h=how(),where=h==='pickup'&&PICK&&PICK.ADDRESS?PICK.ADDRESS:$('where').value.trim(),dy=h==='delivery'?day():null,py=pay();
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
     var noItems=!items.length;
     $('e-lines').hidden=!noItems;
@@ -580,20 +580,17 @@ document.documentElement.classList.add('js');
       });
     });
   }
-  // pickup-only day (CONFIG.PICKUP_ONLY): only on that date in San Antonio, so it ends by itself at midnight
+  // no-delivery day (CONFIG.PICKUP_ONLY): only on that date in San Antonio, so it ends by itself at midnight
   var PICK=null;
   (function(){
     var c=CONFIG.PICKUP_ONLY;if(!c||!c.DATE)return;
     var t=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
     if(t!==c.DATE)return;
     PICK=c;
-    var dl=form.querySelector('input[name=how][value=delivery]');dl.disabled=true;dl.parentNode.hidden=true;
-    form.querySelector('#f-how legend').textContent='Pickup only today';
-    $('howNote').textContent=c.ADDRESS?'No delivery today. Pick up at '+c.ADDRESS+'. I\'ll text you to set a time.':'No delivery today, pickup only.';
+    $('howNote').textContent='No delivery today. You can still order delivery for tomorrow or later.'+(c.ADDRESS?' Pickup today is at '+c.ADDRESS+'. I\'ll text you to set a time.':'');
     $('howNote').hidden=false;
   })();
   days();restore();soldOut();
-  if(PICK)form.querySelector('input[name=how][value=pickup]').checked=true;
   mode();render();save();loadFull();
 })();
 
