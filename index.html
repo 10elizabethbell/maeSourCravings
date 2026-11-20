@@ -349,6 +349,7 @@ FORM: calm band system; order builder in place of a quote form because the job i
           <label class="opt"><input type="radio" name="how" value="delivery">Delivery</label>
           <label class="opt"><input type="radio" name="how" value="pickup">Pickup</label>
         </div>
+        <p class="note" id="howNote" hidden></p>
         <p class="err" id="e-how">Choose delivery or pickup.</p>
       </fieldset>
       <fieldset class="field choice" id="f-day" aria-describedby="dayNote e-day" hidden>
@@ -412,7 +413,8 @@ var CONFIG = {
   DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
   SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
   ORDERS_API: '',                               // Apps Script web app URL (backend/SETUP.md); empty turns off the order log and daily caps
-  SOLD_OUT: ['a','c']                           // sizes that can't be ordered: a 8oz, b 16oz, c 8oz with pickles, d 16oz with pickles; [] when all are back
+  PICKUP_ONLY: { DATE: '2026-11-20', ADDRESS: '' }, // on DATE (San Antonio time) delivery is off and orders are pickup at ADDRESS; normal again the next day by itself
+  SOLD_OUT: []                                  // sizes that can't be ordered: a 8oz, b 16oz, c 8oz with pickles, d 16oz with pickles; [] when all are back
 };
 document.documentElement.classList.add('js');
 
@@ -471,6 +473,7 @@ document.documentElement.classList.add('js');
   // pickup still asks where they are, so Aleda can pick a meetup spot near them
   function mode(){
     var p=how()==='pickup';
+    $('f-where').hidden=!!(PICK&&PICK.ADDRESS);
     $('whereLabel').textContent=p?'Where you are right now':'Your address';
     $('whereNote').hidden=!p;
     $('f-day').hidden=how()!=='delivery';
@@ -536,7 +539,7 @@ document.documentElement.classList.add('js');
   function smsLink(text){return 'sms:'+CONFIG.PHONE+'?&body='+encodeURIComponent(text)}
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    var name=$('name').value.trim(),where=$('where').value.trim(),h=how(),dy=h==='delivery'?day():null,py=pay();
+    var name=$('name').value.trim(),where=PICK&&PICK.ADDRESS?PICK.ADDRESS:$('where').value.trim(),h=how(),dy=h==='delivery'?day():null,py=pay();
     var items=rows.filter(function(r){return counts[r.dataset.id]>0});
     var noItems=!items.length;
     $('e-lines').hidden=!noItems;
@@ -553,7 +556,7 @@ document.documentElement.classList.add('js');
     if(h==='delivery'&&!dy){var fd=form.querySelector('input[name=day]');if(fd)fd.focus();return}
     if(!where){$('where').focus();return}
     if(!py){form.querySelector('input[name=pay]').focus();return}
-    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.':'\nDelivery on: '+dy.dataset.label+'\nDelivery to: '+where)+'\nPaying with: '+py;
+    var msg='Hi Aleda, this is '+name+'. I\'d like to order:\n'+items.map(function(r){return counts[r.dataset.id]+' x '+r.dataset.name}).join('\n')+'\nTotal: '+$('total').textContent+(h==='pickup'?(PICK&&PICK.ADDRESS?'\nPickup today at: '+where:'\nPickup. I\'m at: '+where+'\nPlease send me a meetup spot.'):'\nDelivery on: '+dy.dataset.label+'\nDelivery to: '+where)+'\nPaying with: '+py;
     $('sentText').textContent=msg;
     $('sent').hidden=false;$('after').hidden=true;
     if(!orderId){orderId=Date.now().toString(36)+Math.random().toString(36).slice(2,8);save()}
@@ -577,7 +580,21 @@ document.documentElement.classList.add('js');
       });
     });
   }
-  days();restore();soldOut();mode();render();save();loadFull();
+  // pickup-only day (CONFIG.PICKUP_ONLY): only on that date in San Antonio, so it ends by itself at midnight
+  var PICK=null;
+  (function(){
+    var c=CONFIG.PICKUP_ONLY;if(!c||!c.DATE)return;
+    var t=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+    if(t!==c.DATE)return;
+    PICK=c;
+    var dl=form.querySelector('input[name=how][value=delivery]');dl.disabled=true;dl.parentNode.hidden=true;
+    form.querySelector('#f-how legend').textContent='Pickup only today';
+    $('howNote').textContent=c.ADDRESS?'No delivery today. Pick up at '+c.ADDRESS+'. I\'ll text you to set a time.':'No delivery today, pickup only.';
+    $('howNote').hidden=false;
+  })();
+  days();restore();soldOut();
+  if(PICK)form.querySelector('input[name=how][value=pickup]').checked=true;
+  mode();render();save();loadFull();
 })();
 
 /* ===== Floating message circle: shows after the hero, hides while the form is on screen ===== */
