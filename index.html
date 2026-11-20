@@ -413,8 +413,8 @@ var CONFIG = {
   DAYS_AHEAD: 8,                                // how many delivery days to offer, starting today
   SAME_DAY_UNTIL: 22,                           // today stops being offered at this hour, San Antonio time
   ORDERS_API: '',                               // Apps Script web app URL (backend/SETUP.md); empty turns off the order log and daily caps
-  PICKUP_ONLY: { DATE: '2026-11-20', ADDRESS: '' }, // on DATE (San Antonio time) that day can't be picked for delivery (later days can) and pickup is at ADDRESS; normal again the next day by itself
-  SOLD_OUT: []                                  // sizes that can't be ordered: a 8oz, b 16oz, c 8oz with pickles, d 16oz with pickles; [] when all are back
+  PICKUP_ONLY: { DATE: '2026-11-20', ADDRESS: '2618 S Zarzamora St, San Antonio, TX 78207' }, // on DATE (San Antonio time) that day can't be picked for delivery (later days can) and pickup is at ADDRESS; normal again the next day by itself
+  SOLD_OUT: ['a','c']                           // sizes that can't be ordered: a 8oz, b 16oz, c 8oz with pickles, d 16oz with pickles; [] when all are back
 };
 document.documentElement.classList.add('js');
 
